@@ -174,10 +174,10 @@ footer.login_signup_footer {
     font-variant: normal;
     font-weight: 400;
     letter-spacing: 1px;
-    color: #eee;
+    color: #ccc;
+    top: -10px;
     opacity: 0;
-    display: hidden;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 .move_labelup_login {

@@ -22,7 +22,8 @@
                     ng-class="{increase_line_height: user.email.length >= 1}"/>
                 
                 <label 
-                    ng-class="{move_labelup_login: user.email.length >= 1}">E-Mail Address
+                    ng-class="{move_labelup_login: user.email.length >= 1}">
+                    E-Mail Address
                 </label> 
             </div> 
         </div>
@@ -53,7 +54,11 @@
 
     <footer class="row login_signup_footer">
         <div class="col-xs-12">
-            <button class="btn btn-sign_in">Sign In</button>
+            <button 
+                class="btn btn-sign_in"
+                ng-click="signIn(user)">
+                Sign In
+            </button>
         </div>
         <div class="col-xs-12">
             <button class="btn btn-sign_up">Sign Up</button>
