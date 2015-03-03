@@ -28,8 +28,6 @@ var userSchema = new Schema({
 	vehiclePicture: { type: String }
 });
 
-
-
 schema.pre('save', function(next) {
 
 	var user = this;
