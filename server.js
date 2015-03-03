@@ -1,7 +1,11 @@
 var express = require('express');
 var app = express();
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var User = require('./api/models/userModel');
 var port = 8080;
 
 mongoose.connect('mongodb://localhost/ScoreKeep');
@@ -51,6 +55,30 @@ passport.deserializeUser(function(obj, done) {
 
 });
 
-app.post('/api/login', userCrtl.loginUser);
+app.post('/api/login', passport.authenticate('local'), function(req, res) {
+
+	res.status(200).json(req.user);
+
+});
+
+app.post('/api/register', function(req, res) {
+
+	console.log(req.body);
+
+	var newUser = new User(req.body);
+
+	newUser.save(function(err, user) {
+
+		if (err) {
+
+			return res.status(500).end();
+
+		};
+
+		return res.json(user);
+
+	})
+
+});
 
 app.listen(port)
