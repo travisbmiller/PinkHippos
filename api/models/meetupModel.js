@@ -9,6 +9,8 @@ var meetupSchema = new Schema({
 		latitude: { type: Number },
 		longitude: { type: Number }
 	},
+	buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
+	seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 	sellerApproved: { type: Boolean },
 	buyerApproved: { type: Boolean }
 });

@@ -23,7 +23,7 @@ var listingSchema = new Schema({
 			}
 		]},
 	seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
-	buyer: { type: String },
+	buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 	fundsApproved: { type: Boolean },
 	fundsTransferred: { type: Boolean }
 });

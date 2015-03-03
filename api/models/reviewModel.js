@@ -4,13 +4,13 @@ var Schema = mongoose.Schema;
 var reviewSchema = new Schema({
 	item: { type: String },
 	review: {
-		buyer: { type: String },
+		buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 		comment: { type: String },
 		date: { type: Date },
 		stars: { type: Number }
 	},
 	comment: {
-		seller: { type: String },
+		seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 		response: { type: String },
 		date: { type: Date }
 	}
