@@ -2,26 +2,28 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var listingSchema = new Schema({
-	name:
-	price:
+	name: { type: String },
+	price: { type: Number },
 	pictures:{[
 			{
-
+				id: { type: Number }
 			}
 		]},
 	description:
 	notifications: {[
 			{
-
+				id: { type: Number },
+				notification: { type: String }
 			}
 		]},
 	messages: {[
 			{
-
+				id: { type: Number },
+				message: { type: String }
 			}
 		]},
-	seller:
-	buyer:
+	seller: { type: String },
+	buyer: { type: String },
 	fundsApproved: { type: Boolean },
 	fundsTransferred: { type: Boolean }
 });

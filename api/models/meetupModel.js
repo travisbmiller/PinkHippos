@@ -2,15 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var meetupSchema = new Schema({
-	Day:
-	Time:
-	Address:
+	Day: { type: Date },
+	Time: { type: Number },
+	Address: { type: String, uppercase: true },
 	Coords: {
-		latitude:
-		longitude:
+		latitude: { type: Number },
+		longitude: { type: Number }
 	},
-	sellerApproved:
-	buyerApproved:
+	sellerApproved: { type: Boolean },
+	buyerApproved: { type: Boolean }
 });
 
 module.exports = mongoose.model('Meetup', meetupSchema);
