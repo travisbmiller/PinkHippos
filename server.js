@@ -1,7 +1,11 @@
 var express = require('express');
 var app = express();
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var User = require('./api/models/userModel');
 var port = 8080;
 
 mongoose.connect('mongodb://localhost/ScoreKeep');
