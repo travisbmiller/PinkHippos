@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
+var q = require('q');
 
 var userSchema = new Schema({
 	firstName: { type: String, required: true, uppercase: true },
