@@ -4,24 +4,18 @@ var Schema = mongoose.Schema;
 var listingSchema = new Schema({
 	name: { type: String },
 	price: { type: Number },
-	pictures:{[
-			{
-				id: { type: Number }
-			}
-		]},
-	description:
-	notifications: {[
-			{
-				id: { type: Number },
-				notification: { type: String }
-			}
-		]},
-	messages: {[
-			{
-				id: { type: Number },
-				message: { type: String }
-			}
-		]},
+	pictures: {
+			id: { type: Number }
+		},
+	description: { type: String },
+	notifications: {
+			id: { type: Number },
+			notification:  { type: String }
+		},
+	messages: {
+			id: { type: Number },
+			message: { type: String }
+		},
 	seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 	buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 	fundsApproved: { type: Boolean },
