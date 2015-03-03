@@ -5,7 +5,7 @@ var userSchema = new Schema({
 	firstName: { type: String, required: true, uppercase: true },
 	lastName: { type: String, required: true, uppercase: true },
 	email: { type: String, unique: true },
-	password: { type: String },
+	password: { type: String, required: true },
 	phone: {
 		kind: { type: String, lowercase: true, enum: ['cell', 'home', 'work', 'other'] },
 		number: { type: Number }
@@ -27,8 +27,6 @@ var userSchema = new Schema({
 	},
 	vehiclePicture: { type: String }
 });
-
-
 
 schema.pre('save', function(next) {
 
