@@ -2,7 +2,7 @@ var Meetup = require('../models/meetupModel');
 
 module.exports = {
 
-	createMeetup: function(req, res) {
+	addMeetup: function(req, res) {
 
 		console.log(req.body);
 
