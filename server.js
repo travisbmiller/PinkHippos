@@ -8,7 +8,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('./api/models/userModel');
 var port = 8080;
 
-mongoose.connect('mongodb://localhost/ScoreKeep');
+mongoose.connect('mongodb://localhost/pinkHippos');
 app.use(bodyParser.json());
 app.use(express.static(__dirname+'/public'));
 
@@ -20,6 +20,8 @@ passport.use(new LocalStrategy({
 }, function(username, password, done) {
 
 	User.findOne({ email: username }).exec().then(function(user) {
+
+		console.log('User found with: ', user);
 
 		if (!user) {
 		
@@ -56,6 +58,8 @@ passport.deserializeUser(function(obj, done) {
 });
 
 app.post('/api/login', passport.authenticate('local'), function(req, res) {
+
+	console.log(req.user);
 
 	res.status(200).json(req.user);
 
