@@ -22,8 +22,8 @@ var listingSchema = new Schema({
 				message: { type: String }
 			}
 		]},
-	seller: { type: String },
-	buyer: { type: String },
+	seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
+	buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 	fundsApproved: { type: Boolean },
 	fundsTransferred: { type: Boolean }
 });
