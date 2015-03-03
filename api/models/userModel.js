@@ -28,7 +28,7 @@ var userSchema = new Schema({
 	vehiclePicture: { type: String }
 });
 
-schema.pre('save', function(next) {
+userSchema.pre('save', function(next) {
 
 	var user = this;
 
@@ -58,7 +58,7 @@ schema.pre('save', function(next) {
 
 });
 
-schema.methods.comparePassword = function(pass) {
+userSchema.methods.comparePassword = function(pass) {
 
 	var deferred = q.defer();
 
