@@ -8,6 +8,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('./api/models/userModel');
 var listingCtrl = require('./api/controllers/listingCtrl');
 var reviewCtrl = require('./api/controllers/reviewCtrl');
+var meetupCtrl = require('./api/controllers/meetupCtrl');
 var userCtrl = require('./api/controllers/userCtrl');
 var port = 8080;
 
@@ -82,5 +83,7 @@ app.post('/api/register', userCtrl.registerUser);
 app.post('/api/listing', listingCtrl.addListing);
 
 app.post('/api/review', reviewCtrl.addReview);
+
+app.post('/api/meetup', meetupCtrl.addMeetup);
 
 app.listen(port)
