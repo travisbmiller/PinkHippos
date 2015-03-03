@@ -7,6 +7,7 @@ app.config(function ($stateProvider,$urlRouterProvider) {
           templateUrl: "js/loginView/loginTemp.html",
           controller: 'LoginCtrl'
         })
+        
 
 
         $urlRouterProvider.otherwise('/');
