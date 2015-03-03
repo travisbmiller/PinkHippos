@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./api/models/userModel');
+var Listing = require('./api/models/listingModel');
 var userCtrl = require('./api/controllers/userCtrl');
 var port = 8080;
 
@@ -76,5 +77,7 @@ app.post('/api/login', passport.authenticate('local'), function(req, res) {
 });
 
 app.post('/api/register', userCtrl.registerUser);
+
+app.post('/api/listing', listingCtrl.addListing);
 
 app.listen(port)
