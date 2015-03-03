@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
 	firstName: { type: String, required: true, uppercase: true },
 	lastName: { type: String, required: true, uppercase: true },
-	email: { type: String, unique: true },
-	password: { type: String },
+	email: { type: String, unique: true, require: true },
+	password: { type: String, required: true },
 	phone: {
 		kind: { type: String, lowercase: true, enum: ['cell', 'home', 'work', 'other'] },
 		number: { type: Number }
