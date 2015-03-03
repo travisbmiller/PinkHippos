@@ -22,7 +22,7 @@ var listingSchema = new Schema({
 				message: { type: String }
 			}
 		]},
-	seller: { type: String },
+	seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 	buyer: { type: String },
 	fundsApproved: { type: Boolean },
 	fundsTransferred: { type: Boolean }
