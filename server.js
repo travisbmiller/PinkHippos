@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./api/models/userModel');
-var Listing = require('./api/models/listingModel');
+var listingCtrl = require('./api/controllers/listingCtrl');
 var userCtrl = require('./api/controllers/userCtrl');
 var port = 8080;
 
