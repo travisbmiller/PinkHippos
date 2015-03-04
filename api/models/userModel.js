@@ -4,8 +4,8 @@ var bcrypt = require('bcrypt');
 var q = require('q');
 
 var userSchema = new Schema({
-	firstName: { type: String, required: true, uppercase: true },
-	lastName: { type: String, required: true, uppercase: true },
+	firstName: { type: String, required: true },
+	lastName: { type: String, required: true },
 	email: { type: String, unique: true, require: true },
 	password: { type: String, required: true },
 	phone: {
