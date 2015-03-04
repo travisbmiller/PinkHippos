@@ -25,7 +25,8 @@ var userSchema = new Schema({
 		make: { type: String },
 		model: { type: String },
 		color: { type: String },
-		type: { type: String }
+		year: { type: String },
+		completed: { type: Boolean, default: false, required: true }
 	},
 	vehiclePicture: { type: String }
 });
