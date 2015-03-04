@@ -39,4 +39,11 @@
 			color:
 			year:
 			completed: { type: Boolean }
-		}
+		} √
+	- buying and bought processes:
+		- buying: click 'buy', api call to server with listingId, check if buyer is
+		  on listing already, listingId gets pushed onto buyers inProgress array.
+		- bought: status on listing model - active: false
+
+	- when page is loaded for individual item, make api call to show page views for seller.
+	- add "watch" functionality to each listing for the user to see what items they are watching.
