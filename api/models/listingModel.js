@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var listingSchema = new Schema({
 	name: { type: String },
+	shortId: { type: Number },
 	price: { type: Number },
 	pictures: {
 			id: { type: Number }
