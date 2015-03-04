@@ -1,58 +1,189 @@
-<div class="login_wiew">
+<div class="login_wiew container">
     
-    <div class="row login_head">
-        <div class="col-xs-12 login_head_body">
+        <div class="row login_head">
+            <div class="col-xs-12">
 
-            <span class="location_name animated fadeInLeft"> Seattle </span>
+                <span class="location_name animated fadeInLeft"> Seattle </span>
 
-        </div>
-    </div>
-        
-
-    <section class="login_inputs">
-        
-        <div class="row">
-            <div class="col-xs-12 input_full">
-                <span class="input_icon"><i class="fa fa-user"></i></span>
-                
-                <input 
-                    type="e-mail" 
-                    placeholder="E-Mail Address" 
-                    ng-model="user.email"
-                    ng-class="{increase_line_height: user.email.length >= 1}"/>
-                
-                <label 
-                    ng-class="{move_labelup_login: user.email.length >= 1}">
-                    E-Mail Address
-                </label> 
-            </div> 
-        </div>
-    
-   
-          <div class="row">
-            <div class="col-xs-12 input_full">
-                <span class="input_icon"><i class="fa fa-lock"></i></span>
-                <span 
-                    class="clear_password" 
-                    ng-class="{clear_password_slide_in: user.password.length >= 1}"
-                    ng-click="user.password = ''">
-                    <i class="fa fa-times"></i>
-                </span>
-                <input 
-                    type="password" 
-                    placeholder="Password" 
-                    ng-model="user.password"
-                    ng-class="{increase_line_height: user.password.length >= 1}"/>
-                
-                <label
-                    ng-class="{move_labelup_login: user.password.length >= 1}">Password
-                </label>
             </div>
-          </div>
+        </div>
 
-    </section>
+    
 
-    <footer class="row login_signup_footer">
+        <!-- Login Section -->
+        <div id="signin" class="row" ng-class="{slide_out_left: !showSignIn}" ng-hide="hidelogin">
+            <section class="login_inputs">
+                
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon"><i class="fa fa-user"></i></span>
+                        
+                        <input 
+                            type="e-mail" 
+                            placeholder="E-Mail Address" 
+                            ng-model="user.email"
+                            ng-class="{increase_line_height: user.email.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: user.email.length >= 1}">
+                            E-Mail Address
+                        </label> 
+                    </div> 
+                </div>
+            
+           
+                  <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon"><i class="fa fa-lock"></i></span>
+                        <span 
+                            class="clear_password" 
+                            ng-class="{clear_password_slide_in: user.password.length >= 1}"
+                            ng-click="user.password = ''">
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <input 
+                            type="password" 
+                            placeholder="Password" 
+                            ng-model="user.password"
+                            ng-class="{increase_line_height: user.password.length >= 1}"/>
+                        
+                        <label
+                            ng-class="{move_labelup_login: user.password.length >= 1}">Password
+                        </label>
+                    </div>
+                  </div>
+
+            </section>
+        </div>
+
+    <!-- End of Sign In -->
+
+    
+    <div id="registration" class="animated fadeInDown" ng-show="!showSignIn" ng-class="{slide_down_top: !showSignIn}">
+        <section class="signup_inputs">
+            <div class="row">
+                <div class="col-xs-12 input_full">
+                    <span class="input_icon"><i class="fa fa-user"></i></span>
+                    
+                    <input 
+                        type="text" 
+                        placeholder="First Name" 
+                        ng-model="user.firstName"
+                        ng-class="{increase_line_height: user.firstName.length >= 1}"/>
+                    
+                    <label 
+                        ng-class="{move_labelup_login: user.firstName.length >= 1}">
+                        First Name
+                    </label> 
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 input_full">
+                    <span class="input_icon"><i class="fa fa-user"></i></span>
+                    
+                    <input 
+                        type="text" 
+                        placeholder="Last Name" 
+                        ng-model="user.lastName"
+                        ng-class="{increase_line_height: user.lastName.length >= 1}"/>
+                    
+                    <label 
+                        ng-class="{move_labelup_login: user.lastName.length >= 1}">
+                        Last Name
+                    </label> 
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 input_full">
+                    <span class="input_icon"><i class="fa fa-user"></i></span>
+                    
+                    <input 
+                        type="e-mail" 
+                        placeholder="E-Mail Address" 
+                        ng-model="user.email"
+                        ng-class="{increase_line_height: user.email.length >= 1}"/>
+                    
+                    <label 
+                        ng-class="{move_labelup_login: user.email.length >= 1}">
+                        E-Mail Address
+                    </label> 
+                </div> 
+            </div>
+        
+       
+              <div class="row">
+                <div class="col-xs-12 input_full">
+                    <span class="input_icon"><i class="fa fa-lock"></i></span>
+                    <span 
+                        class="clear_password" 
+                        ng-class="{clear_password_slide_in: user.password.length >= 1}"
+                        ng-click="user.password = ''">
+                        <i class="fa fa-times"></i>
+                    </span>
+                    <input 
+                        type="password" 
+                        placeholder="Password" 
+                        ng-model="user.password"
+                        ng-class="{increase_line_height: user.password.length >= 1}"/>
+                    
+                    <label
+                        ng-class="{move_labelup_login: user.password.length >= 1}">Password
+                    </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 input_full">
+                    <span class="input_icon"><i class="fa fa-lock"></i></span>
+                    <span 
+                        class="clear_password" 
+                        ng-class="{clear_password_slide_in: user.passwordconfirm.length >= 1}"
+                        ng-click="user.passwordconfirm = ''">
+                        <i class="fa fa-times"></i>
+                    </span>
+                    <input 
+                        type="password" 
+                        placeholder="Confirm Password" 
+                        ng-model="user.passwordconfirm"
+                        ng-class="{increase_line_height: user.passwordconfirm.length >= 1}"/>
+                    
+                    <label
+                        ng-class="{move_labelup_login: user.passwordconfirm.length >= 1}">Confirm Password
+                    </label>
+                </div>
+              </div>
+
+        </section>
+
+        <footer class="row login_signup_footer" ng-show="showSignIn">
+            <div class="col-xs-12">
+                <button 
+                    class="btn btn-sign_in"
+                    ng-click="signIn(user)">
+                    Sign In
+                </button>
+            </div>
+            <div class="col-xs-12">
+                <button 
+                    class="btn btn-sign_up"
+                    ng-click="showregistration()">Sign Up</button>
+            </div>
+            <div class="col-xs-12 text-center">
+                <span class="password_set">Forgot Your Password?<i class="fa fa-chevron-right"></i></span>
+            </div>
+        </footer>
+
+        
+
+    </div> <!-- End of Registration  -->
+    
+    <footer 
+        class="row login_signup_footer" 
+        ng-class="{slide_down_login_footer: showSignIn == false}"
+        ng-show="showSignIn">
+
         <div class="col-xs-12">
             <button 
                 class="btn btn-sign_in"
@@ -61,11 +192,24 @@
             </button>
         </div>
         <div class="col-xs-12">
-            <button class="btn btn-sign_up">Sign Up</button>
+            <button 
+                class="btn btn-sign_up"
+                ng-click="showregistration()">Sign Up</button>
         </div>
         <div class="col-xs-12 text-center">
             <span class="password_set">Forgot Your Password?<i class="fa fa-chevron-right"></i></span>
         </div>
     </footer>
+       
+    <footer class="row login_register_footer animated fadeInUp" ng-show="!showSignIn">
+            <div class="col-xs-12">
+                <button 
+                    class="btn btn-sign_in"
+                    ng-click="signIn(user)">
+                    Create Account & Sign In
+                </button>
+            </div>
+        </footer>
+
 
 </div>

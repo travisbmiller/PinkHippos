@@ -9,4 +9,12 @@ app.service('LoginService', function ($http) {
                 data: user
             })
        }
+
+       this.register = function (user) {
+            return $http({
+                method: 'POST',
+                url: '/api/register',
+                data: user
+            })
+       }
 })
