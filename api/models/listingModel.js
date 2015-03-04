@@ -20,7 +20,8 @@ var listingSchema = new Schema({
 	seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 	buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 	fundsApproved: { type: Boolean },
-	fundsTransferred: { type: Boolean }
+	fundsTransferred: { type: Boolean },
+	active: { type: Boolean }
 });
 
 module.exports = mongoose.model('Listing', listingSchema);

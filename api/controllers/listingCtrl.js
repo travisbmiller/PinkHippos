@@ -59,6 +59,28 @@ module.exports = {
 
 		});
 
+	},
+
+	getPurchased: function(req, res) {
+
+		console.log('req.body.user: ', req.body);
+
+		buyerId = req.body.user._id;
+
+		Listing.find({ buyer: buyerId }, function(err, listings) {
+
+			if (err) {
+
+				res.status(500).json(err);
+
+			} else {
+
+				res.status(200).json(listings);
+
+			};
+
+		});
+
 	}
 
 };

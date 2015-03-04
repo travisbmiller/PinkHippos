@@ -90,9 +90,9 @@ app.post('/api/meetup', meetupCtrl.addMeetup);
 
 // GET REQUESTS
 
-// app.get('/api/getUser', userCtrl.getUser);
-
 app.get('/api/listing/:id', listingCtrl.getListing);
+
+app.get('/api/purchased', listingCtrl.getPurchased);
 
 // app.get('/api/getReviews', reviewCtrl.getReviews);
 
