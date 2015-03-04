@@ -37,6 +37,28 @@ module.exports = {
 
 			});
 	
+	},
+
+	getListing: function(req, res) {
+
+		var id = parseInt(req.params.id);
+
+		console.log(id);
+
+		Listing.findOne({ shortId: id }, function(err, listing) {
+
+			if (err) {
+
+				res.status(500).json(err);
+
+			} else {
+
+				res.status(200).json(listing);
+
+			}
+
+		});
+
 	}
 
 };
