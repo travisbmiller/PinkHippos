@@ -90,10 +90,10 @@ app.post('/api/meetup', meetupCtrl.addMeetup);
 
 // GET REQUESTS
 
-app.get('/api/getUser', userCtrl.getUser);
+// app.get('/api/getUser', userCtrl.getUser);
 
-app.get('/api/getListing', listingCtrl.getListing);
+// app.get('/api/getListing', listingCtrl.getListing);
 
-app.get('/api/getReviews', reviewCtrl.getReviews);
+// app.get('/api/getReviews', reviewCtrl.getReviews);
 
 app.listen(port)

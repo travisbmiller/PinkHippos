@@ -5,6 +5,8 @@ module.exports = {
 
 	addListing: function(req, res) {
 
+		debugger;
+
 		console.log(req.body);
 		
 		var newListing = new Listing(req.body);
@@ -53,7 +55,11 @@ var createShortId = function() {
 
 		} else {
 
-			shortId = listings.length++;
+			console.log('Listings found: ', listings);
+
+			shortId = listings.length + 1;
+
+			console.log('Short ID generated: ', shortId);
 
 			dfd.resolve(shortId);
 
