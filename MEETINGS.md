@@ -30,3 +30,13 @@
 			- Get shortId to populate listing and seller info.
 			- add 'active (boolean)' property on listing model.
 		- Brandon: ng-upload (uploading photos). node uploading the file to the server (FS or FS-grid).
+
+### AFTER-MEETING 3/4
+	- User model needs:
+		vehicleData: {
+			make:
+			model:
+			color:
+			year:
+			completed: { type: Boolean }
+		}
