@@ -78,6 +78,8 @@ app.post('/api/login', passport.authenticate('local'), function(req, res) {
 
 });
 
+// POST REQUESTS
+
 app.post('/api/register', userCtrl.registerUser);
 
 app.post('/api/listing', listingCtrl.addListing);
@@ -85,5 +87,9 @@ app.post('/api/listing', listingCtrl.addListing);
 app.post('/api/review', reviewCtrl.addReview);
 
 app.post('/api/meetup', meetupCtrl.addMeetup);
+
+// GET REQUESTS
+
+app.get('/api/getUser', userCtrl.getUser);
 
 app.listen(port)
