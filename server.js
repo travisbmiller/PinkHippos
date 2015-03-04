@@ -88,11 +88,11 @@ app.post('/api/review', reviewCtrl.addReview);
 
 app.post('/api/meetup', meetupCtrl.addMeetup);
 
+app.post('/api/buy', listingCtrl.buyItem);
+
 // GET REQUESTS
 
 app.get('/api/listing/:id', listingCtrl.getListing);
-
-app.get('/api/purchased', listingCtrl.getPurchased);
 
 // app.get('/api/getReviews', reviewCtrl.getReviews);
 

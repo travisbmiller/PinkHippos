@@ -43,43 +43,36 @@ module.exports = {
 
 		var id = parseInt(req.params.id);
 
-		console.log(id);
+		findListing(id)
 
-		Listing.findOne({ shortId: id }, function(err, listing) {
-
-			if (err) {
-
-				res.status(500).json(err);
-
-			} else {
+			.then(function(listing) {
 
 				res.status(200).json(listing);
 
-			}
-
-		});
-
-	},
-
-	getPurchased: function(req, res) {
-
-		console.log('req.body.user: ', req.body);
-
-		buyerId = req.body.user._id;
-
-		Listing.find({ buyer: buyerId }, function(err, listings) {
-
-			if (err) {
+			}, function(err) {
 
 				res.status(500).json(err);
 
-			} else {
+			});
+	},
 
-				res.status(200).json(listings);
+	buyItem: function(req, res) {
 
-			};
+		var user = req.user;
 
-		});
+		findListing(req.body.shortId)
+
+			.then(function(listing) {
+
+				user.listings.buyingInPro.push(listingId)
+
+				res.status(200).end();
+
+			}, function(err) {
+
+				res.status(500).json(err);
+
+			});
 
 	}
 
@@ -108,6 +101,28 @@ var createShortId = function() {
 			dfd.resolve(shortId);
 
 		};
+
+	});
+
+	return dfd.promise;
+
+};
+
+var findListing = function(id) {
+
+	var dfd = q.defer();
+
+	Listing.findOne({ shortId: id }, function(err, listing) {
+
+		if (err) {
+
+				dfd.reject(err);
+
+			} else {
+
+				dfd.resolve(listing);
+
+			};
 
 	});
 
