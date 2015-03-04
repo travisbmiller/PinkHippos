@@ -64,7 +64,7 @@ module.exports = {
 
 			.then(function(listing) {
 
-				user.listings.buyingInPro.push(listingId)
+				user.listings.buyingInPro.push(listingId);
 
 				res.status(200).end();
 
