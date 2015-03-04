@@ -10,7 +10,16 @@ var userSchema = new Schema({
 	password: { type: String, required: true },
 	phone: {
 		kind: { type: String, lowercase: true, enum: ['cell', 'home', 'work', 'other'] },
-		number: { type: Number }
+		number: { type: String }
+	},
+	listings: {
+
+		watching: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }],
+		sellingInPro: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }],
+		buyingInPro: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }],
+		sold: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }],
+		purchased: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }]
+
 	},
 	address: {
 		kind: { type: String, enum: ['home', 'work', 'other'] },
