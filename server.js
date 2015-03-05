@@ -94,6 +94,8 @@ app.post('/api/buy', listingCtrl.buyItem);
 
 app.get('/api/listing/:id', listingCtrl.getListing);
 
+app.get('/api/user/:id', userCtrl.getUser);
+
 // app.get('/api/getReviews', reviewCtrl.getReviews);
 
 app.listen(port)

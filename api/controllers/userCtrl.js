@@ -30,4 +30,28 @@ module.exports = {
 
 	}
 
+	getUser: function(req, res) {
+
+		userId = req.params.id;
+
+		User.findById(userId, function(err, user) {
+
+			if (err) {
+
+				res.status(500).json(err);
+
+			} else if (user) {
+
+				res.status(200).json(user);
+
+			} else {
+
+				res.status(404).end();
+
+			}
+
+		});
+
+	}
+
 };
