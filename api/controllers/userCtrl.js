@@ -28,7 +28,7 @@ module.exports = {
 
 		});
 
-	}
+	},
 
 	getUser: function(req, res) {
 
