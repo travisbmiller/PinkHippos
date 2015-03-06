@@ -60,5 +60,16 @@
 			- Fine tune registration and login pages
 			- User dashboard set up.
 
+### MEETING 3/6
+
+	- Chip: 
+		- Listing GET calls for bought and sold items
+		- Finish listing status change calls: buying/ bought
+
+	- Travis:
+
+		- Continue with building views for registration and dashboard. 
+
+
 
 			

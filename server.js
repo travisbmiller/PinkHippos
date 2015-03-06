@@ -93,9 +93,15 @@ app.post('/api/buy', listingCtrl.buyItem);
 
 app.get('/api/listing/:id', listingCtrl.getListing);
 
+app.get('/api/checkUser/:email', userCtrl.checkUser);
+
 app.get('/api/user/:id', userCtrl.getUser);
 
-app.get('/api/checkUser/:email', userCtrl.checkUser);
+app.get('/api/user/:id/purchased', listingCtrl.getPurchased);
+
+app.get('/api/user/:id/sold', listingCtrl.getSold);
+
+app.get('/api/user/:id/watching', listingCtrl.getWatching);
 
 // app.get('/api/getReviews', reviewCtrl.getReviews);
 
