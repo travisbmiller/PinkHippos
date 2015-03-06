@@ -1,4 +1,5 @@
 var Listing = require('../models/listingModel.js');
+var userCtrl = require('./userCtrl');
 var q = require('q');
 
 module.exports = {
@@ -47,11 +48,11 @@ module.exports = {
 
 			.then(function(listing) {
 
-				res.status(200).json(listing);
+				return res.status(200).json(listing);
 
 			}, function(err) {
 
-				res.status(500).json(err);
+				return res.status(500).json(err);
 
 			});
 	},
@@ -59,14 +60,48 @@ module.exports = {
 	buyItem: function(req, res) {
 
 		var user = req.user;
+		
+		console.log('User in buyItem function ', user);
 
 		findListing(req.body.shortId)
 
 			.then(function(listing) {
 
-				user.listings.buyingInPro.push(listingId);
+				console.log('Listing found: ', listing);
 
-				res.status(200).end();
+				user.listings.purchased.push(listing._id);
+
+				console.log(user.listings.purchased);
+
+				user.save(function(err, user) {
+
+					if (err) {
+
+						return res.status(500).json(err);
+
+					} else {
+
+						return res.status(200).json('Save success!');
+
+					}
+
+				});
+
+			}, function(err) {
+
+				return res.status(500).json(err);
+
+			});
+
+	},
+
+	getPurchased: function(req, res) {
+
+		userCtrl.findUser(req.user._id, 'purchased')
+
+			.then(function(user) {
+
+				res.status(200).json(user.listing.purchased);
 
 			}, function(err) {
 
@@ -74,7 +109,11 @@ module.exports = {
 
 			});
 
-	}
+	},
+
+	getSold: function(req, res) {},
+
+	getWatching: function(req, res) {}
 
 };
 

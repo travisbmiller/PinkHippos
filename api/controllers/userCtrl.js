@@ -1,4 +1,5 @@
 var User = require('../models/userModel');
+var q = require('q');
 
 module.exports = {
 
@@ -75,6 +76,28 @@ module.exports = {
 			}
 
 		});
+
+	},
+
+	findUser: function(id, field) {
+
+		var dfd = q.defer();
+
+		User.findById(id)
+
+			.populate(field).exec()
+
+			.then(function (user) {
+
+				dfd.resolve(user);
+
+			}, function (err) {
+
+				dfd.reject(err);
+
+			});
+
+		return dfd.promise;
 
 	}
 
