@@ -52,11 +52,13 @@
 
 	- Tasks: 
 		- Chip:
-			- GET with user ID in should return user
+			- GET with user ID in should return user 
 			- Error handling for login
 			- Continue with yesterday
 
 		- Travis:
 			- Fine tune registration and login pages
 			- User dashboard set up.
+
+
 			

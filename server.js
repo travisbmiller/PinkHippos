@@ -24,15 +24,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy({
-
-	usernameField: 'email',
-	passwordField: 'password'
-
-}, function(username, password, done) {
+    
+    usernameField: 'email',
+    
+    passwordField: 'password'
+  
+  }, function(username, password, done) {
 
 	User.findOne({ email: username }).exec().then(function(user) {
-
-		debugger;
 
 		console.log('User found with: ', user);
 
@@ -95,6 +94,8 @@ app.post('/api/buy', listingCtrl.buyItem);
 app.get('/api/listing/:id', listingCtrl.getListing);
 
 app.get('/api/user/:id', userCtrl.getUser);
+
+app.get('/api/checkUser/:email', userCtrl.checkUser);
 
 // app.get('/api/getReviews', reviewCtrl.getReviews);
 
