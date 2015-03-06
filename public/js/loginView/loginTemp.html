@@ -1,9 +1,14 @@
 <div class="login_wiew container">
     
+        <div ng-show="showErrorMsg" class="err_msg animated fadeInDown">
+            <i class="fa fa-exclamation-circle"></i>
+            {{ ErrorMsg }}
+        </div>
+
         <div class="row login_head">
             <div class="col-xs-12">
 
-                <span class="location_name animated fadeInLeft"> Seattle </span>
+                <span class="location_name animated fadeInLeft"> <i class="flaticon-thermometer50"></i> <span class="blue">{{ currentTemp }}</span></span>
 
             </div>
         </div>
@@ -12,14 +17,14 @@
 
         <!-- Login Section -->
         <div id="signin" class="row" ng-class="{slide_out_left: !showSignIn}" ng-hide="hidelogin">
-            <section class="login_inputs">
+            <section class="login_inputs animated fadeInDown">
                 
                 <div class="row">
                     <div class="col-xs-12 input_full">
                         <span class="input_icon"><i class="fa fa-user"></i></span>
                         
                         <input 
-                            type="e-mail" 
+                            type="email" 
                             placeholder="E-Mail Address" 
                             ng-model="user.email"
                             ng-class="{increase_line_height: user.email.length >= 1}"/>
@@ -59,102 +64,115 @@
     <!-- End of Sign In -->
 
     
-    <div id="registration" class="animated fadeInDown" ng-show="!showSignIn" ng-class="{slide_down_top: !showSignIn}">
+    <div id="registrationstep1" class="animated fadeInDown" ng-show="!showSignIn && !showregisterstep2 && !showregisterstep3" ng-class="{slide_down_top: !showSignIn}">
         <section class="signup_inputs">
-            <div class="row">
-                <div class="col-xs-12 input_full">
-                    <span class="input_icon"><i class="fa fa-user"></i></span>
-                    
-                    <input 
-                        type="text" 
-                        placeholder="First Name" 
-                        ng-model="user.firstName"
-                        ng-class="{increase_line_height: user.firstName.length >= 1}"/>
-                    
-                    <label 
-                        ng-class="{move_labelup_login: user.firstName.length >= 1}">
-                        First Name
-                    </label> 
-                </div> 
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12 input_full">
-                    <span class="input_icon"><i class="fa fa-user"></i></span>
-                    
-                    <input 
-                        type="text" 
-                        placeholder="Last Name" 
-                        ng-model="user.lastName"
-                        ng-class="{increase_line_height: user.lastName.length >= 1}"/>
-                    
-                    <label 
-                        ng-class="{move_labelup_login: user.lastName.length >= 1}">
-                        Last Name
-                    </label> 
-                </div> 
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12 input_full">
-                    <span class="input_icon"><i class="fa fa-user"></i></span>
-                    
-                    <input 
-                        type="e-mail" 
-                        placeholder="E-Mail Address" 
-                        ng-model="user.email"
-                        ng-class="{increase_line_height: user.email.length >= 1}"/>
-                    
-                    <label 
-                        ng-class="{move_labelup_login: user.email.length >= 1}">
-                        E-Mail Address
-                    </label> 
-                </div> 
-            </div>
-        
-       
-              <div class="row">
-                <div class="col-xs-12 input_full">
-                    <span class="input_icon"><i class="fa fa-lock"></i></span>
-                    <span 
-                        class="clear_password" 
-                        ng-class="{clear_password_slide_in: user.password.length >= 1}"
-                        ng-click="user.password = ''">
-                        <i class="fa fa-times"></i>
-                    </span>
-                    <input 
-                        type="password" 
-                        placeholder="Password" 
-                        ng-model="user.password"
-                        ng-class="{increase_line_height: user.password.length >= 1}"/>
-                    
-                    <label
-                        ng-class="{move_labelup_login: user.password.length >= 1}">Password
-                    </label>
+            <form name="registerStepOne" novalidate>
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepOne.firstName.$valid}"><i class="fa fa-user"></i></span>
+                        
+                        <input 
+                            type="text" 
+                            required
+                            name="firstName"
+                            placeholder="First Name" 
+                            ng-model="newUser.firstName"
+                            ng-class="{increase_line_height: newUser.firstName.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: newUser.firstName.length >= 1}">
+                            First Name
+                        </label> 
+                    </div> 
                 </div>
-              </div>
 
-              <div class="row">
-                <div class="col-xs-12 input_full">
-                    <span class="input_icon"><i class="fa fa-lock"></i></span>
-                    <span 
-                        class="clear_password" 
-                        ng-class="{clear_password_slide_in: user.passwordconfirm.length >= 1}"
-                        ng-click="user.passwordconfirm = ''">
-                        <i class="fa fa-times"></i>
-                    </span>
-                    <input 
-                        type="password" 
-                        placeholder="Confirm Password" 
-                        ng-model="user.passwordconfirm"
-                        ng-class="{increase_line_height: user.passwordconfirm.length >= 1}"/>
-                    
-                    <label
-                        ng-class="{move_labelup_login: user.passwordconfirm.length >= 1}">Confirm Password
-                    </label>
+
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepOne.lastName.$valid}"><i class="fa fa-user"></i></span>
+                        
+                        <input 
+                            type="text" 
+                            required
+                            name="lastName"
+                            placeholder="Last Name" 
+                            ng-model="newUser.lastName"
+                            ng-class="{increase_line_height: newUser.lastName.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: newUser.lastName.length >= 1}">
+                            Last Name
+                        </label> 
+                    </div> 
                 </div>
-              </div>
 
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepOne.email.$valid}"><i class="fa fa-envelope"></i></span>
+                        
+                        <input 
+                            type="email"
+                            required
+                            name="email"
+                            placeholder="E-Mail Address" 
+                            ng-model="newUser.email"
+                            ng-class="{increase_line_height: newUser.email.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: newUser.email.length >= 1}">
+                            E-Mail Address
+                        </label> 
+
+                    </div> 
+                </div>
+            
+           
+                  <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepOne.password.$valid}"><i class="fa fa-lock"></i></span>
+                        <span 
+                            class="clear_password" 
+                            ng-class="{clear_password_slide_in: newUser.password.length >= 1}"
+                            ng-click="newUser.password = ''">
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <input 
+                            type="password" 
+                            required
+                            name="password"
+                            placeholder="Password" 
+                            ng-model="newUser.password"
+                            ng-class="{increase_line_height: newUser.password.length >= 1}"/>
+                        
+                        <label
+                            ng-class="{move_labelup_login: newUser.password.length >= 1}">Password
+                        </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepOne.passwordconfirm.$valid}"><i class="fa fa-lock"></i></span>
+                        <span 
+                            class="clear_password" 
+                            ng-class="{clear_password_slide_in: newUser.passwordconfirm.length >= 1}"
+                            ng-click="newUser.passwordconfirm = ''">
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <input 
+                            type="password" 
+                            required
+                            name="passwordconfirm"
+                            placeholder="Confirm Password" 
+                            ng-model="newUser.passwordconfirm"
+                            ng-class="{increase_line_height: newUser.passwordconfirm.length >= 1}"/>
+                        
+                        <label
+                            ng-class="{move_labelup_login: newUser.passwordconfirm.length >= 1}">Confirm Password
+                        </label>
+                    </div>
+                  </div>
+             </form> 
         </section>
 
         <footer class="row login_signup_footer" ng-show="showSignIn">
@@ -175,12 +193,136 @@
             </div>
         </footer>
 
-        
-
-    </div> <!-- End of Registration  -->
+    </div> <!-- End of Registration Step 1  -->
     
+    <div id="registrationstep2" class="animated fadeInDown" ng-show="!showSignIn && !showregisterstep1 && !showregisterstep3" ng-class="{slide_down_top: !showSignIn}">
+        <section class="signup_inputs">
+            <form name="registerStepTwo" novalidate>
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepTwo.address.$valid}"><i class="fa fa-map-marker"></i></span>
+                        
+                        <input 
+                            type="text" 
+                            required
+                            name="address"
+                            placeholder="Address" 
+                            ng-model="newUser.address"
+                            ng-class="{increase_line_height: newUser.address.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: newUser.address.length >= 1}">
+                            Address
+                        </label> 
+                    </div> 
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepTwo.address2.$valid}"><i class="fa fa-map-marker"></i></span>
+                        
+                        <input 
+                            type="text" 
+                            required
+                            name="address2"
+                            placeholder="Apartment, Floor, Suite, Bldg #" 
+                            ng-model="newUser.address2"
+                            ng-class="{increase_line_height: newUser.address2.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: newUser.address2.length >= 1}">
+                            Apartment, Floor, Suite, Bldg #
+                        </label> 
+                    </div> 
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepTwo.city.$valid}"><i class="fa fa-map-marker"></i></span>
+                        
+                        <input 
+                            type="text" 
+                            required
+                            name="city"
+                            placeholder="City" 
+                            ng-model="newUser.city"
+                            ng-class="{increase_line_height: newUser.city.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: newUser.city.length >= 1}">
+                            City
+                        </label> 
+                    </div> 
+                </div>
+            
+           
+                  <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepTwo.state.$valid}"><i class="fa fa-map-marker"></i></span>
+                        <input 
+                            type="text" 
+                            required
+                            name="state"
+                            placeholder="State" 
+                            ng-model="newUser.state"
+                            ng-class="{increase_line_height: newUser.state.length >= 1}"/>
+                        
+                        <label
+                            ng-class="{move_labelup_login: newUser.state.length >= 1}">State
+                        </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepTwo.zip.$valid}"><i class="fa fa-map-marker"></i></span>
+                        <input 
+                            type="text" 
+                            required
+                            name="zip"
+                            placeholder="Zip Code" 
+                            ng-model="newUser.zip"
+                            ng-class="{increase_line_height: newUser.zip.length >= 1}"/>
+                        
+                        <label
+                            ng-class="{move_labelup_login: newUser.zip.length >= 1}">Zip Code
+                        </label>
+                    </div>
+                  </div>
+             </form> 
+        </section>
+    </div> <!-- End of Registration Step 2 -->
+
+
+    <!-- Registration Step 3 -->
+    <div id="registrationstep3" class="animated fadeInDown" ng-show="!showSignIn && !showregisterstep1 && !showregisterstep2" ng-class="{slide_down_top: !showSignIn}">
+        <section class="signup_inputs">
+            <form name="registerStepThree" novalidate>
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: registerStepThree.test.$valid}"><i class="fa fa-map-marker"></i></span>
+                        
+                        <input 
+                            type="text" 
+                            required
+                            name="test"
+                            placeholder="Address" 
+                            ng-model="newUser.test"
+                            ng-class="{increase_line_height: newUser.test.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: newUser.test.length >= 1}">
+                            Address
+                        </label> 
+                    </div> 
+                </div>
+             </form> 
+        </section>
+    </div> <!-- End of Registration Step 3 -->
+
     <footer 
-        class="row login_signup_footer" 
+        class="row login_signup_footer animated fadeInUp" 
         ng-class="{slide_down_login_footer: showSignIn == false}"
         ng-show="showSignIn">
 
@@ -201,15 +343,56 @@
         </div>
     </footer>
        
-    <footer class="row login_register_footer animated fadeInUp" ng-show="!showSignIn">
-            <div class="col-xs-12">
-                <button 
-                    class="btn btn-sign_in"
-                    ng-click="signIn(user)">
-                    Create Account & Sign In
-                </button>
+    <footer class="row login_register_footer" ng-show="!showSignIn">
+            
+            <div class="col-xs-12" ng-show="show_next_btn">
+                 <div class="row btn-container">
+                    <div ng-show="!showSignIn" class="animated fadeInLeft">
+                        <button 
+                            class="btn btn-back col-xs-2"
+                            ng-click="back()">
+                            <span><i class="fa fa-chevron-left"></i></span>back 
+                        </button>
+                    </div>
+
+                    <div ng-show="showregisterstep1" class="animated fadeInRight">
+                        <button 
+                            ng-show = "showregisterstep1"
+                            ng-class="{fadeInUp: registerStepOne.$valid}"
+                            class="btn btn-next col-xs-10 animated"
+                            ng-click="changeStep()"
+                            ng-disabled="registerStepOne.$invalid">
+                            Step 2 
+                            <span><i class="fa fa-chevron-right"></i></span>
+                        </button>
+                    </div>
+
+                    <div ng-show="showregisterstep2" class="animated fadeInRight">
+                        <button 
+                            ng-class="{fadeInUp: registerStepTwo.$valid}"
+                            class="btn btn-next col-xs-10 animated"
+                            ng-click="changeStep()"
+                            ng-disabled="registerStepTwo.$invalid">
+                            Step 3 
+                            <span><i class="fa fa-chevron-right"></i></span>
+                        </button>
+                    </div>
+
+                    <div ng-show="showregisterstep3" class="animated fadeInRight">
+                        <button 
+                            ng-class="{fadeInUp: registerStepThree.$valid}"
+                            class="btn btn-next col-xs-10 animated btn-create-account"
+                            ng-click="createAccount(newUser)"
+                            ng-disabled="registerStepThree.$invalid">
+                            Create Account
+                            <span><i class="fa fa-chevron-right"></i></span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </footer>
+
+
 
 
 </div>
