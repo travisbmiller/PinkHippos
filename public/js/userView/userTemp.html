@@ -1,0 +1,76 @@
+ <div class="dashboard_view">  
+    <div class="col-xs-12 animated slideInLeft" id="slide_in_nav" ng-show="showSlideNav">
+        <div class="row">
+            <header class="col-xs-12">
+
+                    <div class="profile_pic_container">
+                        <img src="../../imgs/profile.jpg"/>
+                    </div>
+
+                    <div class="profile_name_container">
+                        Travis Miller
+                    </div>
+                <div class="row">
+                <div 
+                    class="circle exit_icon"
+                    ng-touch="showSlideNav = false"
+                    ng-click="showSlideNav = false">
+                    <i class="fa fa-times"></i>
+                </div>
+
+            </header>
+        </div>
+
+    </div>
+    <header id="user_view_head" class="col-xs-12">
+
+        <div class="row">
+            <div class="col-xs-12 head_bar">
+                HandOff
+                <i 
+                class="fa fa-bars"
+                ng-touch="showSlideNav = true"
+                ng-click="showSlideNav = true"></i>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 nav_bar">
+               <div class="row">
+                    <a ui-sref="user.listing">
+                        <div 
+                            class="col-xs-4 nav_link"
+                            ng-click="slideNavLine('listing')"
+                            ng-class="{highlight: listing}">Listing
+                        </div>
+                     </a>   
+                     <a ui-sref="user.selling">  
+                        <div 
+                            class="col-xs-4 nav_link" 
+                            ng-click="slideNavLine('selling')"
+                            ng-touch="slideNavLine('selling')"
+                            ng-class="{highlight: selling}">Selling
+                        </div>
+                     <a>
+                     <a ui-sref="user.sold">   
+                        <div 
+                            class="col-xs-4 nav_link" 
+                            ng-click="slideNavLine('sold')"
+                            ng-touch="slideNavLine('sold')"
+                            ng-class="{highlight: sold}">
+                            Sold
+                        </div>
+                    </a>
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 nav_line" ng-class="{'col-xs-offset-4' : selling, 'col-xs-offset-8' : sold}">
+            </div>
+            
+        </div>
+
+    </header>
+
+    <div ui-view class="col-xs-12" id="dashboard_views"></div>
+
+</div>

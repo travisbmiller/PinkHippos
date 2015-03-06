@@ -9,6 +9,44 @@ html, body {
     width: 100%;
 }
 
+.view {
+    height: 100%;
+}
+
+.user_wiew {
+    height: 100%;
+    width: 100%;
+    background: red;
+}
+
+
+
+@font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/flaticon.eot");
+    src: url("../fonts/flaticon.eot#iefix") format("embedded-opentype"),
+    url("../fonts/flaticon.woff") format("woff"),
+    url("../fonts/flaticon.ttf") format("truetype"),
+    url("../fonts/flaticon.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+    font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+/*margin-left: 20px;*/
+}.flaticon-thermometer50:before {
+    content: "\e000";
+}
+
+
+
+button {
+    transition: background 0.9s;
+}
+
 #view {
     width: 100%;
     max-height: 100%;
@@ -23,12 +61,14 @@ html, body {
     height: 50%;
     /*background: blue;*/
     transition: 0.4s; 
-
+    overflow: auto;
 }
 
-#registration {
+#registrationstep1, #registrationstep2, #registrationstep3 {
     position: relative;
-    left: 0;
+    height: calc(80% - 90px);
+    overflow-x: hidden;
+    overflow-y: auto;
     /*bottom: 500px;*/
     transition: 0.4s; 
 }
@@ -46,7 +86,13 @@ html, body {
     bottom: -300px !important;
 }
 
-
+.dashboard_view {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 
 .login_wiew {
     width: 100%;
@@ -54,7 +100,7 @@ html, body {
     position: fixed;
     top: 0;
     left: 0;
-    background: url('../imgs/seattle-bg-mobile.png') no-repeat center center fixed;
+    background: url('../imgs/provo3.png') no-repeat right center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -63,20 +109,37 @@ html, body {
 
 .login_head {
     width: 100%;
-    height: 20%;
-    margin: auto 0;
-    /*background: yellow;*/
+    height: 10%;
+    /*margin: auto 0;*/
+    overflow: hidden;
 }
 
 .location_name {
     display: inline-block;
-    padding-left: 20px;
     padding-top: 20px;
     font-family: Helvetica;
     font-weight: 100;
-    font-size: 14px;
+    font-size: 1em;
     color: #F8F7F8;
-    opacity: 0.8;
+}
+
+.blue {
+    color: #1A7CAE;
+    font-family: Helvetica;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.highlight {
+   color: #FFFFFF !important; 
+}
+
+.location_name > i {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: 4px;
+    color: #F8F7F8;
 }
 
 section.login_inputs {
@@ -104,36 +167,69 @@ footer.login_register_footer {
     left: 0;
     width: 100%;
     margin: 0 auto;
+    padding-bottom: 20px;
     transition: bottom 0.4s;
 }
 
-.btn-sign_in, .btn-sign_up {
+.btn-sign_in, .btn-sign_up, .btn-next, .btn-back {
     width: 100%;
     height: 70px;
     display: block;
     border-radius: 0;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    font-size: 1.2em;
     font-style: normal;
     font-variant: normal;
     font-weight: 100;
     letter-spacing: 3px;
-    font-size: 25px;
     color: #F8F7F8;
-    
-
 }
 
-.btn-sign_up {
+.btn-next {
+    width: 68% !important;
     opacity: 0.85;
-    background: #9B9B9B;
+    background: #4C88DB;
+}
+
+.btn-back {
+    width: 30% !important;
+    margin-right: 2%;
+    border: 2px solid #9B9B9B;
     color: #fff;
+    background: none;
+}
+
+.btn-container {
+    padding: 0 15px;
+}
+
+
+
+
+
+
+.btn-sign_in .fa.fa-chevron-right {
+    position: relative;
+    top: 2px;
+}
+
+/*red #E8313F*/
+
+.btn-sign_up {
+    opacity: 1;
+    background: none;
+    border: 2px solid #9B9B9B;
+    color: #4C88DB;
+    font-weight: 300;
+    /*text-shadow: 2px 2px 2px #333333*/
 }
 
 .btn-sign_in {
     margin-bottom: 10px;
     opacity: 0.85;
     background: #4C88DB;
+    /*text-shadow: 1px 1px 5px #777*/
+
 }
 
 .password_set {
@@ -170,7 +266,54 @@ footer.login_register_footer {
     background: #979797;
     line-height: 60px;
     float: left;
+    transition: background 0.8s;
+}
 
+.err_msg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 10;
+    background: rgba(232, 49, 63, 1);
+    font-size: 1em;
+    color: #FFF;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding: 10px 0 10px 55px;
+    line-height: 40px;
+}
+
+.err_circle {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    border-radius: 17.5px;
+    background: rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 1.9em;
+    color: #fff;
+    font-weight: 800;
+    padding-bottom: 10px; 
+
+}
+
+.err_msg > i {
+    font-size: 2.2em;
+    color: #C70D1B;
+    position: absolute;
+    top: 15px;
+    left: 18px;
+}
+
+
+.valid_blue {
+    /*opacity: 0.85;*/
+    background: #4C88DB !important;
 }
 
 .input_icon > .fa {
@@ -184,7 +327,6 @@ footer.login_register_footer {
 .input_full > input {
     width: calc(100% - 60px);
     height: 60px;
-    border-radius: 2px;
     line-height: 60px;
     outline: none;
     border: none;
@@ -246,5 +388,181 @@ footer.login_register_footer {
     opacity: 1;
 }
 
+button:disabled {
+    opacity: 0.85;
+    background: #9B9B9B;
+    color: #fff;
+}
 
 
+/*----------------------------------------
+            User Temp Styles
+----------------------------------------*/
+
+#dashboard_views {
+    height: 100%;
+}
+
+
+#user_view_head {
+    height: 100px;
+}
+
+
+#user_view_head .head_bar{
+    height: 40px;
+    background: #1A1A1A;
+    position: relative;
+}
+
+.head_bar > .fa.fa-bars {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    font-size: 1.8em;
+}
+
+#user_view_head .nav_bar {
+    height: 60px;
+    background: #2A2A2A;
+}
+
+.nav_bar .nav_link {
+    height: 100%;
+    line-height: 60px;
+    text-align: center;
+    color: #828384;
+    transition: 0.5s;
+}
+
+.nav_line {
+    height: 3px;
+    background: #4C88DB;
+    position: relative;
+    bottom: 3px;
+    transition: 0.8s;  
+}
+
+
+
+/* Slide in Nav */
+
+#slide_in_nav {
+    height: 100%;
+    background: black;
+    position: absolute;
+    z-index: 100;
+}
+
+#slide_in_nav header {
+    width: 100%;
+    height: 60px;
+    background: #2A2A2A;
+}
+
+#slide_in_nav .profile_pic_container {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: none;
+    position: relative;
+    top: 5px;
+    float: left;
+}
+
+#slide_in_nav .profile_name_container {
+    width: 80%;
+    height: 100%;
+    padding-left: 20px;
+    line-height: 60px;
+    position: relative;
+    float: left;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #ccc;
+
+}
+
+#slide_in_nav .profile_pic_container img {
+    max-width: 100%;
+    border-radius: 25px;
+}
+
+.circle {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    border: 1px solid #828384;
+}
+
+.exit_icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    text-align: center;
+    color: #828384;
+    font-size: 1.3em;
+}
+
+.exit_icon .fa.fa-times {
+    position: relative;
+    top: 2px;
+}
+
+
+
+#dashboard_view {
+    height: 100%;
+}
+
+.listing_header {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 0.8em;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.listing_container {
+    height: calc(100% - 150px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+.listing_item {
+    height: 80px;
+    border-bottom: 1px solid #e9e9e9;
+    line-height: 80px
+}
+
+.add_icon {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    text-align: center;
+    color: #e9e9e9;
+    font-size: 1.3em;
+}
+
+.listing_header > .circle {
+    border: 1px solid #e9e9e9;
+}
+
+.add_icon > .fa.fa-plus {
+    position: relative;
+    bottom: 10px;
+}
+
+.listing_item .fa.fa-ellipsis-v {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    font-size: 20px;
+    color: #e9e9e9;
+}
