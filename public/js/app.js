@@ -1,4 +1,4 @@
-var app = angular.module("app", ['ui.router', 'ngTouch']);
+var app = angular.module("app", ['ui.router', 'ngTouch', "angularFileUpload"]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider

@@ -82,7 +82,7 @@
                             required
                             name="itemName"
                             placeholder="Listing Title" 
-                            ng-model="newlisting.title"
+                            ng-model="file"
                             ng-class="{increase_line_height: newlisting.title.length >= 1}"/>
                         
                         <label 
@@ -92,7 +92,7 @@
                     </div> 
                 </div>
                 
-            
+            <div class="button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Select File</div>
            
                   
 
