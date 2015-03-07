@@ -1,0 +1,109 @@
+<div id="create_new_listing_view">
+    
+    <header class="listing_header col-xs-12">
+        New Listing
+
+        <span class="requiredsteps">Required Steps</span>
+        <span class="circle numberofsteps"> 
+            <span class="steps">3</span> 
+        </span>
+    </header>
+
+    <div id="new_listing_container" class="animated fadeInUp">
+        <section class="signup_inputs">
+            <form name="newListing" novalidate>
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: newListing.itemName.$valid}"><i class="fa fa-check"></i></span>
+                        
+                        <input 
+                            type="text" 
+                            required
+                            name="itemName"
+                            placeholder="Listing Title" 
+                            ng-model="newlisting.title"
+                            ng-class="{increase_line_height: newlisting.title.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: newlisting.title.length >= 1}">
+                            Listing Title
+                        </label> 
+                    </div> 
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: newListing.price.$valid}"><i class="fa fa-check"></i></span>
+                        
+                        <input 
+                            type="text" 
+                            required
+                            name="price"
+                            placeholder="Price" 
+                            ng-model="newlisting.price"
+                            ng-class="{increase_line_height: newlisting.price.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: newlisting.price.length >= 1}">
+                            Price
+                        </label> 
+                    </div> 
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon textarea_icon" ng-class="{valid_blue: newListing.description.$valid}"><i class="fa fa-check"></i></span>
+                        
+                        <textarea
+                            required
+                            name="description"
+                            placeholder="Item Description" 
+                            ng-model="newlisting.description"
+                            ng-class="{increase_padding: newlisting.description.length >= 1}">
+                    </textarea>
+                        
+                        <label 
+                            class="textarea_label"
+                            ng-class="{move_labelup_login: newlisting.description.length >= 1}">
+                            Item Description
+                        </label> 
+
+                    </div> 
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon" ng-class="{valid_blue: newListing.itemName.$valid}"><i class="fa fa-check"></i></span>
+                        
+                        <input 
+                            type="file" 
+                            required
+                            name="itemName"
+                            placeholder="Listing Title" 
+                            ng-model="newlisting.title"
+                            ng-class="{increase_line_height: newlisting.title.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: newlisting.title.length >= 1}">
+                            Listing Title
+                        </label> 
+                    </div> 
+                </div>
+                
+            
+           
+                  
+
+        <!-- <footer class="row login_signup_footer">
+            <div class="col-xs-12">
+                <button 
+                    class="btn btn-sign_in"
+                    ng-click="signIn(user)">
+                    Sign In
+                </button>
+            </div>
+        </footer> -->
+
+</div>

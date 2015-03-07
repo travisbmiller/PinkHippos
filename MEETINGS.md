@@ -47,3 +47,16 @@
 
 	- when page is loaded for individual item, make api call to show page views for seller.
 	- add "watch" functionality to each listing for the user to see what items they are watching.
+
+### MEETING 3/5
+
+	- Tasks: 
+		- Chip:
+			- GET with user ID in should return user
+			- Error handling for login
+			- Continue with yesterday
+
+		- Travis:
+			- Fine tune registration and login pages
+			- User dashboard set up.
+			

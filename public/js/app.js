@@ -43,6 +43,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             //     } 
             // }
         })
+        .state('user.createlisting', {
+            url: '/newlisting',
+            templateUrl: 'js/newlistingView/newlistingTemp.html', 
+            controller: 'NewListingCtrl'
+            // resolve: {
+            //     UserData: function ($stateParams, UserService) {
+            //         return UserService.getUser($stateParams.user)
+            //     } 
+            // }
+        })
 
         
 
