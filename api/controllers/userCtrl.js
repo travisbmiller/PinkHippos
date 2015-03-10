@@ -10,23 +10,32 @@ module.exports = {
 
 	registerUser: function(req, res) {
 
-		console.log(req.body);
+		console.log(req.body) // form fields
+        console.log(req.files.file.name) // form files
 
-		var newUser = new User(req.body);
+        data = JSON.parse(req.body.data) // parsing incoming data.
+        console.log(data)
+  
+        var newUser = new User(data)
 
-		newUser.save(function(err, user) {
+        if (req.files.file.name) {
+            console.log("theres a file")
+            newUser.profilePicture = 'uploads/' + req.files.file.name
+        }
 
-			if (err) {
-
-				console.log(err);
-
-				return res.status(500).json(err);
-
-			};
-
-			return res.json(user);
-
-		});
+        newUser.save(function(err, user) {
+                console.log("saving")
+                 if (err) {
+                     console.log("err", err)
+                     return res.status(500).json(err);
+                
+                 } else {
+                    console.log("success")
+                     return res.status(200).json(user);
+                
+                 }
+                
+             });
 
 	},
 

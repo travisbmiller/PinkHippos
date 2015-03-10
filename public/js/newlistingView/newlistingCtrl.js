@@ -1,26 +1,32 @@
 var app = angular.module('app');
-app.controller('NewListingCtrl', function ($scope, $upload) {
+app.controller('NewListingCtrl', function ($scope, $upload, $http) {
    
 
- $scope.$watch('files', function () {
-        $scope.upload($scope.files);
-    });
+ 
 
-    $scope.upload = function (files) {
-        if (files && files.length) {
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
+    $scope.upload = function (data) {
+                
                 $upload.upload({
-                    url: 'api/upload',
-                    fields: {'username': $scope.username},
-                    file: file
+                    url: 'api/listing',
+                    file: data.picFile,
+                    data: {
+                        title: data.title,
+                        price: data.price,
+                        description: data.description
+                    }
                 }).progress(function (evt) {
+                    
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                    console.log('progress: ' + progressPercentage + '% ' + evt.config.file[0].name);
                 }).success(function (data, status, headers, config) {
-                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                    
+                    console.log('file ' + config.file[0].name + ' uploaded. Response: ', data);
                 });
-            }
-        }
+           
     }
+
+
+
+
+
 })

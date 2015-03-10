@@ -2,8 +2,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var listingSchema = new Schema({
-	title: String,
-	img: { data: Buffer, contentType: String }
+	
+    title: String,
+    price: String,
+    description: String,
+	img: [ Object ]
 	
 });
 

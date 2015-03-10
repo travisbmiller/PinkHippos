@@ -5,23 +5,22 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var multer = require('multer');
+var fs = require('fs')
+
 var User = require('./api/models/userModel');
 var listingCtrl = require('./api/controllers/listingCtrl');
 var reviewCtrl = require('./api/controllers/reviewCtrl');
 var meetupCtrl = require('./api/controllers/meetupCtrl');
 var userCtrl = require('./api/controllers/userCtrl');
-var multiparty = require('connect-multiparty');
-var multipartyMiddleware = multiparty();
-var fs = require('fs')
-var port = 8080;
-var Grid = require('gridfs-stream');
 
-UserController = require('./api/controllers/UserController');
-Listing = require('./api/models/listingModel')
+
+var port = 8080;
 
 
 mongoose.connect('mongodb://localhost/pinkHippos');
 app.use(bodyParser.json());
+
 app.use(express.static(__dirname+'/public'));
 app.use(session({
 
@@ -88,51 +87,23 @@ app.post('/api/login', passport.authenticate('local'), function(req, res) {
 
 // POST REQUESTS
 
-// app.post('/api/register', userCtrl.registerUser);
+app.post('/api/register', multer({ dest: './public/uploads/'}), userCtrl.registerUser);
 
-// app.post('/api/listing', listingCtrl.addListing);
+app.post('/api/listing', multer({ dest: './public/uploads/'}), listingCtrl.addListing);
 
-// app.post('/api/review', reviewCtrl.addReview);
+app.post('/api/review', reviewCtrl.addReview);
 
-// app.post('/api/meetup', meetupCtrl.addMeetup);
+app.post('/api/meetup', meetupCtrl.addMeetup);
 
-// app.post('/api/buy', listingCtrl.buyItem);
+app.post('/api/buy', listingCtrl.buyItem);
 
 // GET REQUESTS
 
-// app.get('/api/listing/:id', listingCtrl.getListing);
+app.get('/api/listing/:id', listingCtrl.getListing);
 
-// app.get('/api/user/:id', userCtrl.getUser);
+app.get('/api/user/:id', userCtrl.getUser);
 
 // app.get('/api/getReviews', reviewCtrl.getReviews);
 
-app.get('/api/listing/:id', function (req, res) {
-
-		console.log("hit")
-		console.log(req.params.id)
-
-        Listing.findById(req.params.id, function (err, doc) {
-          
-          if (err) return res.send(err);
-          res.contentType(doc.img.contentType);
-          res.send(doc.img.data);
-        });
-      
-
-
-})
-
-app.post('/api/upload', multipartyMiddleware, function (req, res) {
-	
-	
-	var a = new Listing;
-    a.img.data = fs.readFileSync(req.files.file.path);
-    a.img.contentType = 'image/png';
-    a.save(function (err, a) {
-      if (err) throw err;
- 
-      console.error('saved img to mongo');
-  })
-});
 
 app.listen(port)
