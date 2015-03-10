@@ -1,42 +1,40 @@
 var Listing = require('../models/listingModel.js');
 var q = require('q');
+var fs = require('fs');
+
 
 module.exports = {
 
 	addListing: function(req, res) {
 
-		debugger;
+        console.log(req.body) // form fields
+        console.log(req.files.file.name) // form files
 
-		console.log(req.body);
-		
-		var newListing = new Listing(req.body);
+        data = JSON.parse(req.body.data) // parsing incoming data.
+        console.log(data)
+  
+        var newListing = new Listing(data)
 
-		createShortId()
+        if (req.files.file.name) {
+            console.log("theres a file")
+            newListing.img[0] = {
+                url: 'public/' + req.files.file.name
+            } 
+        }
 
-			.then(function(shortId) {
-
-				newListing.shortId = shortId;
-		
-				newListing.save(function(err, listing) {
-				
-					if (err) {
-				
-						return res.status(500).json(err);
-				
-					} else {
-				
-						return res.status(200).json(listing);
-				
-					}
-				
-				});
-
-			}, function(err) {
-
-				console.log('Create shortId failed with this error: ', err);
-
-			});
-	
+        newListing.save(function(err, listing) {
+                console.log("saving")
+                 if (err) {
+                     console.log("err", err)
+                     return res.status(500).json(err);
+                
+                 } else {
+                    console.log("success")
+                     return res.status(200).json(listing);
+                
+                 }
+                
+             });
 	},
 
 	getListing: function(req, res) {

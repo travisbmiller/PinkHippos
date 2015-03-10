@@ -35,6 +35,7 @@ app.controller('LoginCtrl', function ($scope, LoginService, $state, $timeout, We
         LoginService.login(user)
             .then(function (res) {
                 console.log(res)
+                $state.go('user', {user: res.data._id})
             }, function (err) {
                 console.log("err", err)
                 $scope.showErrorMsg = true;
@@ -47,15 +48,15 @@ app.controller('LoginCtrl', function ($scope, LoginService, $state, $timeout, We
 
     $scope.createAccount = function (user) {
         
-        delete user.test
+        
         LoginService.register(user) 
             .then(function (res) {
-                console.log(res)
-                var userId = res.data._id
-                console.log(userId)
-                $state.go('user.dashboard', {user: userId})
+                console.log("res -- ", res)
+                console.log(res._id)
+                
+                $state.go('user', {user: res._id})
             }, function (err) {
-                console.log(err)
+                console.log("err", err)
             })
     }
 

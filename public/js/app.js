@@ -1,4 +1,4 @@
-var app = angular.module("app", ['ui.router', 'ngTouch']);
+var app = angular.module("app", ['ui.router', 'ngTouch', "angularFileUpload"]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -10,7 +10,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('user', {
             url: "/:user",
             templateUrl: "js/userView/userTemp.html",
-            controller: 'UserCtrl'
+            controller: 'UserCtrl',
+            resolve: {
+                UserData: function ($stateParams, UserService) {
+                    return UserService.getUser($stateParams.user)
+                } 
+            }
         })
         .state('user.listing', {
             templateUrl: "js/dashboardView/dashboardTemp.html",

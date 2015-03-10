@@ -5,15 +5,22 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var multer = require('multer');
+var fs = require('fs')
+
 var User = require('./api/models/userModel');
 var listingCtrl = require('./api/controllers/listingCtrl');
 var reviewCtrl = require('./api/controllers/reviewCtrl');
 var meetupCtrl = require('./api/controllers/meetupCtrl');
 var userCtrl = require('./api/controllers/userCtrl');
+
+
 var port = 8080;
+
 
 mongoose.connect('mongodb://localhost/pinkHippos');
 app.use(bodyParser.json());
+
 app.use(express.static(__dirname+'/public'));
 app.use(session({
 
@@ -80,9 +87,9 @@ app.post('/api/login', passport.authenticate('local'), function(req, res) {
 
 // POST REQUESTS
 
-app.post('/api/register', userCtrl.registerUser);
+app.post('/api/register', multer({ dest: './public/uploads/'}), userCtrl.registerUser);
 
-app.post('/api/listing', listingCtrl.addListing);
+app.post('/api/listing', multer({ dest: './public/uploads/'}), listingCtrl.addListing);
 
 app.post('/api/review', reviewCtrl.addReview);
 
@@ -97,5 +104,6 @@ app.get('/api/listing/:id', listingCtrl.getListing);
 app.get('/api/user/:id', userCtrl.getUser);
 
 // app.get('/api/getReviews', reviewCtrl.getReviews);
+
 
 app.listen(port)

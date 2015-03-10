@@ -8,7 +8,8 @@
             <span class="steps">3</span> 
         </span>
     </header>
-
+    
+    
     <div id="new_listing_container" class="animated fadeInUp">
         <section class="signup_inputs">
             <form name="newListing" novalidate>
@@ -73,7 +74,7 @@
                 </div>
 
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-xs-12 input_full">
                         <span class="input_icon" ng-class="{valid_blue: newListing.itemName.$valid}"><i class="fa fa-check"></i></span>
                         
@@ -82,7 +83,7 @@
                             required
                             name="itemName"
                             placeholder="Listing Title" 
-                            ng-model="newlisting.title"
+                            ng-model="file"
                             ng-class="{increase_line_height: newlisting.title.length >= 1}"/>
                         
                         <label 
@@ -90,11 +91,11 @@
                             Listing Title
                         </label> 
                     </div> 
-                </div>
-                
-            
+                </div> -->
+              <input type="file" ng-file-select="" ng-model="newlisting.picFile" name="file" accept="image/*" required="">  
+            <!-- <div class="button" ng-file-select ng-file-change="upload($files)" ng-multiple="false">Select File</div> -->
            
-                  
+             <button ng-click="upload(newlisting)">Submit</button>     
 
         <!-- <footer class="row login_signup_footer">
             <div class="col-xs-12">

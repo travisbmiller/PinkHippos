@@ -301,7 +301,7 @@
             <form name="registerStepThree" novalidate>
                 <div class="row">
                     <div class="col-xs-12 input_full">
-                        <span class="input_icon" ng-class="{valid_blue: registerStepThree.test.$valid}"><i class="fa fa-map-marker"></i></span>
+                        <!-- <span class="input_icon" ng-class="{valid_blue: registerStepThree.test.$valid}"><i class="fa fa-map-marker"></i></span>
                         
                         <input 
                             type="text" 
@@ -314,7 +314,14 @@
                         <label 
                             ng-class="{move_labelup_login: newUser.test.length >= 1}">
                             Address
-                        </label> 
+                        </label>  -->
+
+                        <input type="file" ng-file-select="" ng-model="newUser.pic" name="file" accept="image/*" required="">  
+            
+           
+                        <button ng-click="upload(newlisting)">Submit</button>  
+
+
                     </div> 
                 </div>
              </form> 
@@ -383,7 +390,6 @@
                             ng-class="{fadeInUp: registerStepThree.$valid}"
                             class="btn btn-next col-xs-10 animated btn-create-account"
                             ng-click="createAccount(newUser)"
-                            ng-disabled="registerStepThree.$invalid">
                             Create Account
                             <span><i class="fa fa-chevron-right"></i></span>
                         </button>

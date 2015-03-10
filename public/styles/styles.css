@@ -499,6 +499,7 @@ button:disabled {
 #slide_in_nav .profile_pic_container {
     width: 50px;
     height: 50px;
+    overflow: hidden;
     border-radius: 25px;
     background-color: none;
     position: relative;
@@ -524,8 +525,10 @@ button:disabled {
 }
 
 #slide_in_nav .profile_pic_container img {
-    max-width: 100%;
+    width: 50px;
+    height: 50px;
     border-radius: 25px;
+
 }
 
 .circle {
