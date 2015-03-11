@@ -1,4 +1,6 @@
 var User = require('../models/userModel');
+var fs = require('fs')
+var easyimg = require('easyimage');
 
 module.exports = {
 
@@ -10,12 +12,32 @@ module.exports = {
 
 	registerUser: function(req, res) {
 
-		console.log(req.body) // form fields
-        console.log(req.files.file.name) // form files
+        // File path req.files.file.name
 
-        data = JSON.parse(req.body.data) // parsing incoming data.
+        // resizing image
+        easyimg.rescrop({
+             src:'./public/uploads/' + req.files.file.name , dst:'./public/uploads/' + req.files.file.name,
+             width:500, height:500,
+             cropwidth: 400, cropheight:400,
+             x:0, y:0,
+             gravity: "Center",
+             fill: true
+          }).then(
+          function(image) {
+             console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
+          },
+          function (err) {
+            console.log(err);
+          }
+        );
+                
+
+        // parsing incoming data.       
+        data = JSON.parse(req.body.data) 
         console.log(data)
   
+
+        // creating new User
         var newUser = new User(data)
 
         if (req.files.file.name) {
@@ -23,6 +45,8 @@ module.exports = {
             newUser.profilePicture = 'uploads/' + req.files.file.name
         }
 
+
+        //Saving new user
         newUser.save(function(err, user) {
                 console.log("saving")
                  if (err) {
