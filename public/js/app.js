@@ -17,14 +17,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 } 
             }
         })
-        .state('user.listing', {
-            templateUrl: "js/dashboardView/dashboardTemp.html",
-            controller: 'DashboardCtrl'
-            // resolve: {
-            //     UserData: function ($stateParams, UserService) {
-            //         return UserService.getUser($stateParams.user)
-            //     } 
-            // }
+        .state('user.listings', {
+            templateUrl: "js/listingsView/listingTemp.html",
+            controller: 'ListingCtrl',
+            resolve: {
+                ListingData: function ($stateParams, ListingService) {
+                    return ListingService.getListings($stateParams.user)
+                } 
+            }
         })
         .state('user.sold', {
             template: "<p>Sold view</p>",

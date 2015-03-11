@@ -7,18 +7,19 @@ module.exports = {
 
 	addListing: function(req, res) {
 
-        console.log(req.body) // form fields
-        console.log(req.files.file.name) // form files
+        // console.log(req.body) // form fields
+        console.log(req.files) // form files
 
         data = JSON.parse(req.body.data) // parsing incoming data.
+        
         console.log(data)
   
         var newListing = new Listing(data)
 
-        if (req.files.file.name) {
+        if (req.files.file) {
             console.log("theres a file")
             newListing.img[0] = {
-                url: 'public/' + req.files.file.name
+                url: 'uploads/' + req.files.file.name
             } 
         }
 
@@ -53,6 +54,15 @@ module.exports = {
 
 			});
 	},
+
+    getListings: function (req, res) {
+        console.log(req.params.id)
+        
+        Listing.find({"seller" : req.params.id}, function (err, listings) {
+            if (err) return res.status(500).json(err)
+            return res.status(200).json(listings)
+        })
+    },
 
 	buyItem: function(req, res) {
 
