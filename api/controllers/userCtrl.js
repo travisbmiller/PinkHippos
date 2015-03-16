@@ -1,5 +1,7 @@
 var User = require('../models/userModel');
 var q = require('q');
+var fs = require('fs')
+var easyimg = require('easyimage');
 
 module.exports = {
 
@@ -11,23 +13,54 @@ module.exports = {
 
 	registerUser: function(req, res) {
 
-		console.log(req.body);
+        // File path req.files.file.name
 
-		var newUser = new User(req.body);
+        // resizing image
+        easyimg.rescrop({
+             src:'./public/uploads/' + req.files.file.name , dst:'./public/uploads/' + req.files.file.name,
+             width:500, height:500,
+             cropwidth: 400, cropheight:400,
+             x:0, y:0,
+             gravity: "Center",
+             fill: true
+          }).then(
+          function(image) {
+             console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
+          },
+          function (err) {
+            console.log(err);
+          }
+        );
+                
 
-		newUser.save(function(err, user) {
+        // parsing incoming data.       
+        data = JSON.parse(req.body.data) 
+        console.log(data)
+  
 
-			if (err) {
+        // creating new User
+        var newUser = new User(data)
 
-				console.log(err);
+        if (req.files.file.name) {
+            console.log("theres a file")
+            newUser.profilePicture = 'uploads/' + req.files.file.name
+        }
 
-				return res.status(500).json(err);
 
-			};
-
-			return res.json(user);
-
-		});
+        //Saving new user
+        newUser.save(function(err, user) {
+                console.log("saving")
+                 if (err) {
+                     console.log("err", err)
+                     return res.status(500).json(err);
+                
+                 } else {
+                    console.log("success")
+                     return res.status(200).json(user);
+                
+                 }
+                
+             });
 
 	},
 

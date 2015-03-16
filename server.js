@@ -5,15 +5,22 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var multer = require('multer');
+var fs = require('fs')
+var resizeCrop = require('resize-crop');
 var User = require('./api/models/userModel');
 var listingCtrl = require('./api/controllers/listingCtrl');
 var reviewCtrl = require('./api/controllers/reviewCtrl');
 var meetupCtrl = require('./api/controllers/meetupCtrl');
 var userCtrl = require('./api/controllers/userCtrl');
+
+
 var port = 8080;
+
 
 mongoose.connect('mongodb://localhost/pinkHippos');
 app.use(bodyParser.json());
+
 app.use(express.static(__dirname+'/public'));
 app.use(session({
 
@@ -79,9 +86,9 @@ app.post('/api/login', passport.authenticate('local'), function(req, res) {
 
 // POST REQUESTS
 
-app.post('/api/register', userCtrl.registerUser);
+app.post('/api/register', multer({ dest: './public/uploads/'}), userCtrl.registerUser);
 
-app.post('/api/listing', listingCtrl.addListing);
+app.post('/api/listing', multer({ dest: './public/uploads/'}), listingCtrl.addListing);
 
 app.post('/api/review', reviewCtrl.addReview);
 
@@ -93,7 +100,11 @@ app.post('/api/buy', listingCtrl.buyItem);
 
 app.get('/api/listing/:id', listingCtrl.getListing);
 
+<<<<<<< HEAD
 app.get('/api/checkUser/:email', userCtrl.checkUser);
+=======
+app.get('/api/listings/:id', listingCtrl.getListings);
+>>>>>>> 0c97a169e162cf06a19345cee6e75e915b86ac4b
 
 app.get('/api/user/:id', userCtrl.getUser);
 
@@ -104,5 +115,6 @@ app.get('/api/user/sold', listingCtrl.getSold);
 app.get('/api/user/watching', listingCtrl.getWatching);
 
 // app.get('/api/getReviews', reviewCtrl.getReviews);
+
 
 app.listen(port)

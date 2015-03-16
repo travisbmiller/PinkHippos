@@ -1,0 +1,299 @@
+<div ng-show="post_a_question" id="post_question" class="animated slideInUp">
+    <div ng-click="post_a_question = false">close me</div>
+    <div class="row">
+        
+        <div class="col-xs-12 ">
+            <header>
+                
+            </header>
+        
+
+
+        </div>
+      
+    </div>
+</div>
+
+    <!-- Log In Modal -->
+
+<div ng-show="login_pop_up" id="login_modal">
+
+    <header class="row">
+
+        <div class="col-xs-12 text-center">
+
+            <span class="pop_up_login_title">Oh No! </span>
+            <span class="pop_up_login_sub_title">You must be logged in to do that.</span>
+
+        </div>
+
+        <div class="col-xs-12">
+            <div id="signin" class="row" ng-class="{slide_out_left: !showSignIn}" >
+            <section class="login_inputs animated fadeInDown">
+                
+                <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon"><i class="fa fa-user"></i></span>
+                        
+                        <input 
+                            type="email" 
+                            placeholder="E-Mail Address" 
+                            ng-model="user.email"
+                            ng-class="{increase_line_height: user.email.length >= 1}"/>
+                        
+                        <label 
+                            ng-class="{move_labelup_login: user.email.length >= 1}">
+                            E-Mail Address
+                        </label> 
+                    </div> 
+                </div>
+            
+           
+                  <div class="row">
+                    <div class="col-xs-12 input_full">
+                        <span class="input_icon"><i class="fa fa-lock"></i></span>
+                        <span 
+                            class="clear_password" 
+                            ng-class="{clear_password_slide_in: user.password.length >= 1}"
+                            ng-click="user.password = ''">
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <input 
+                            type="password" 
+                            placeholder="Password" 
+                            ng-model="user.password"
+                            ng-class="{increase_line_height: user.password.length >= 1}"/>
+                        
+                        <label
+                            ng-class="{move_labelup_login: user.password.length >= 1}">Password
+                        </label>
+                    </div>
+                  </div>
+
+            </section>
+        </div>
+
+    <!-- End of Sign In -->
+
+        </div>
+
+    </header>
+
+</div>
+
+
+<div id="public_listing_container">
+    <header class="row">
+        <div class="col-xs-12">
+            this is the header
+            <i class="fa fa-star favorite"></i>
+        </div>
+    </header>
+    
+    <div class="public_listing_container_scroll">
+       
+        <div class="row ">
+            <div class="col-xs-12 pic_container">
+                <img src="../../uploads/test.jpg"/>
+            </div>
+        </div>
+
+        <div class="row ">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-8 left listing_info">
+                        <span class="listing_title">Listing Title Here</span>
+                        <span class="seller_info">Seller: 
+                            <span class="seller_name" ng-click="show_seller_info = true">Travis</span>
+                        </span>
+
+                    </div>
+                    <div class="col-xs-4 right listing_info">
+                        <span class="listing_price">Price</span>
+                        <span class="listing_price_amout">$10.00</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="description">
+
+                <span class="description_title"> Description </span>
+
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-xs-12">
+
+                <span class="messages_title"> Questions 
+                    <span class="number_of_questions_circle">
+                        <span class="number_of_questions">2</span>
+                    </span>
+                    <i class="fa fa-plus" ng-click="post_a_question = true"></i>
+                    <i class="fa fa-chevron-up"></i>
+                </span>
+                
+                <div class="messages">
+
+                    <div class="row">
+                        
+                        <div class="col-xs-12 message">
+
+                            <span class="message_submitted_by">
+                                <span class="message_by">Question</span>
+                                    </span>
+                            <span class="submitted_at">10:32am 12/12/12</span>
+
+                            <span class="message_body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            </span>
+
+                            <div class="message_response">
+                                <span class="replyed_at">1:15pm 12/12/12</span>
+                                <span class="replayed_from">
+                                    <span class="message_by">Anwser</span>
+                                
+                                </span>
+
+                                <span class="response_body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                                </span>
+
+                            </div>
+                           
+                            <div class="col-xs-12">
+                                <span class="message_line_break"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        
+                        <div class="col-xs-12 message">
+
+                            <span class="message_submitted_by">
+                                <span class="message_by">Question</span>
+                                    </span>
+                            <span class="submitted_at">4:15pm 12/13/12</span>
+
+                            <span class="message_body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            </span>
+                           
+                            <div class="col-xs-12">
+                                <span class="message_line_break"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+
+        <!-- Seller's Reviews -->
+        <div class="row">
+            <div class="col-xs-12">
+
+                <span class="messages_title"> Seller's Reviews 
+                    <span class="number_of_reviews_circle">
+                        <span class="number_of_questions">2</span>
+                    </span>
+                    <i class="fa fa-chevron-up"></i>
+                </span>
+                
+                <div class="messages">
+
+                    <div class="row">
+                        
+                        <div class="col-xs-12 message">
+
+                            <span class="message_submitted_by">
+                                <span class="message_by">Item: </span>
+                                    Title of Item</span> 
+                            <span class="submitted_at">12/12/12</span>
+
+                            <span class="message_body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            </span>
+
+                            <div class="message_response">
+                                <span class="replyed_at">12/12/12</span>
+                                <span class="replayed_from">
+                                    <span class="message_by">Response from </span> Travis
+                                
+                                </span>
+
+                                <span class="response_body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                                </span>
+
+                            </div>
+                           
+                            <div class="col-xs-12">
+                                <span class="message_line_break"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        
+                        <div class="col-xs-12 message">
+
+                            <span class="message_submitted_by">
+                                <span class="message_by">Item: </span>
+                                    Title of Item</span>
+                            <span class="submitted_at">12/13/12</span>
+
+                            <span class="message_body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            </span>
+                           
+                            <div class="col-xs-12">
+                                <span class="message_line_break"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                
+                </div>
+
+                <div class="show_more_reviews"> Show More Reviews </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <!-- <div class="col-xs-5 btn-ask_question"> Post a Question</div> -->
+                    <div class="col-xs-12 btn-buy"> Buy This Item</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

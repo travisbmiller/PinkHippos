@@ -1,4 +1,4 @@
-var app = angular.module("app", ['ui.router', 'ngTouch']);
+var app = angular.module("app", ['ui.router', 'ngTouch', "angularFileUpload"]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -7,19 +7,29 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "js/loginView/loginTemp.html",
             controller: 'LoginCtrl'
         })
+        .state('publicListing', {
+            url: '/listing',
+            templateUrl: 'js/publicListingView/publicListingTemp.html', 
+            controller: 'PublicListingCtrl'
+        })
         .state('user', {
             url: "/:user",
             templateUrl: "js/userView/userTemp.html",
-            controller: 'UserCtrl'
+            controller: 'UserCtrl',
+            resolve: {
+                UserData: function ($stateParams, UserService) {
+                    return UserService.getUser($stateParams.user)
+                } 
+            }
         })
-        .state('user.listing', {
-            templateUrl: "js/dashboardView/dashboardTemp.html",
-            controller: 'DashboardCtrl'
-            // resolve: {
-            //     UserData: function ($stateParams, UserService) {
-            //         return UserService.getUser($stateParams.user)
-            //     } 
-            // }
+        .state('user.listings', {
+            templateUrl: "js/listingsView/listingTemp.html",
+            controller: 'ListingCtrl',
+            resolve: {
+                ListingData: function ($stateParams, ListingService) {
+                    return ListingService.getListings($stateParams.user)
+                } 
+            }
         })
         .state('user.sold', {
             template: "<p>Sold view</p>",
@@ -43,6 +53,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             //     } 
             // }
         })
+        .state('user.createlisting', {
+            url: '/newlisting',
+            templateUrl: 'js/newlistingView/newlistingTemp.html', 
+            controller: 'NewListingCtrl'
+            // resolve: {
+            //     UserData: function ($stateParams, UserService) {
+            //         return UserService.getUser($stateParams.user)
+            //     } 
+            // }
+        })
+        
 
         
 
