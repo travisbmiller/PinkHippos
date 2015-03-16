@@ -1,5 +1,6 @@
 var Listing = require('../models/listingModel.js');
 var userCtrl = require('./userCtrl');
+var User = require('../models/userModel');
 var q = require('q');
 
 module.exports = {
@@ -60,8 +61,6 @@ module.exports = {
 	buyItem: function(req, res) {
 
 		var user = req.user;
-		
-		console.log('User in buyItem function ', user);
 
 		findListing(req.body.shortId)
 
@@ -71,21 +70,33 @@ module.exports = {
 
 				user.listings.purchased.push(listing._id);
 
-				console.log(user.listings.purchased);
+				newArr = user.listings.purchased;
 
-				user.save(function(err, user) {
+				console.log('New array: ', newArr);
 
-					if (err) {
+				User.findOneAndUpdate({ email: user.email }, { listing: {
 
-						return res.status(500).json(err);
+					purchased: newArr
 
-					} else {
+				}}, function (user) {
 
-						return res.status(200).json('Save success!');
-
-					}
+					console.log('Update found this user ', user);
 
 				});
+
+				// user.save(function(err, user) {
+
+				// 	if (err) {
+
+				// 		return res.status(500).json(err);
+
+				// 	} else {
+
+				// 		return res.status(200).json('Save success!');
+
+				// 	}
+
+				// });
 
 			}, function(err) {
 
