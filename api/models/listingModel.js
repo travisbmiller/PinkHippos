@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
+var shortid = require('shortid');
 var Schema = mongoose.Schema;
 
 var listingSchema = new Schema({
-	
+    _id: { type: String, unique: true, 'default': shortid.generate },
     title: String,
     price: String,
     description: String,

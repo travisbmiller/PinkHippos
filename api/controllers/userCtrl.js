@@ -1,4 +1,5 @@
 var User = require('../models/userModel');
+var q = require('q');
 var fs = require('fs')
 var easyimg = require('easyimage');
 
@@ -63,6 +64,30 @@ module.exports = {
 
 	},
 
+	checkUser: function(req, res) {
+
+		var userEmail = req.params.email;
+
+		User.findOne({ email: userEmail }, function(err, user) {
+
+			if (err) {
+
+				res.status(500).end();
+
+			} else if (!user) {
+
+				res.status(404).end();
+
+			} else {
+
+				res.status(200).end();
+
+			};
+
+		});
+
+	},
+
 	getUser: function(req, res) {
 
 		userId = req.params.id;
@@ -84,6 +109,28 @@ module.exports = {
 			}
 
 		});
+
+	},
+
+	findUser: function(id, field) {
+
+		var dfd = q.defer();
+
+		User.findById(id)
+
+			.populate(field).exec()
+
+			.then(function (user) {
+
+				dfd.resolve(user);
+
+			}, function (err) {
+
+				dfd.reject(err);
+
+			});
+
+		return dfd.promise;
 
 	}
 

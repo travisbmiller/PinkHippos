@@ -49,14 +49,28 @@
 	- add "watch" functionality to each listing for the user to see what items they are watching.
 
 ### MEETING 3/5
-
 	- Tasks: 
 		- Chip:
-			- GET with user ID in should return user
+			- GET with user ID in should return user 
 			- Error handling for login
 			- Continue with yesterday
 
 		- Travis:
 			- Fine tune registration and login pages
 			- User dashboard set up.
+
+
+### MEETING 3/6
+
+	- Chip: 
+		- Listing GET calls for bought and sold items
+		- Finish listing status change calls: buying/ bought
+
+	- Travis:
+
+		- Continue with building views for registration and dashboard. 
+
+### MEETING 3/16
+	- mongoose/mongo shortId
+	- buying process
 			
