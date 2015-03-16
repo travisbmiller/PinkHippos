@@ -1,11 +1,12 @@
 var app = angular.module('app');
-app.controller('NewListingCtrl', function ($scope, $upload, $http) {
+app.controller('NewListingCtrl', function ($scope, $upload, $http, $state) {
    
 
  
-
     $scope.upload = function (data) {
-
+        // if (files && files.length) {
+        //     for (var i = 0; i < files.length; i++) {
+        //         var file = files[i];
 
         $upload.upload({
             url: 'api/listing',
@@ -27,6 +28,7 @@ app.controller('NewListingCtrl', function ($scope, $upload, $http) {
                 console.log('file ' + config.file[0].name + ' uploaded. Response: ', data);
             } else {
                 console.log(data)
+                $state.go('user.listings')
             }
         });
            

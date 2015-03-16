@@ -7,6 +7,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "js/loginView/loginTemp.html",
             controller: 'LoginCtrl'
         })
+        .state('publicListing', {
+            url: '/listing',
+            templateUrl: 'js/publicListingView/publicListingTemp.html', 
+            controller: 'PublicListingCtrl'
+        })
         .state('user', {
             url: "/:user",
             templateUrl: "js/userView/userTemp.html",
@@ -58,6 +63,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             //     } 
             // }
         })
+        
 
         
 

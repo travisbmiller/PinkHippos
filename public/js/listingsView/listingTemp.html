@@ -1,7 +1,7 @@
 <div id="dashboard_view">
 
         <header class="listing_header col-xs-12">
-            2 Current Listings
+            {{listings.length}} Current Listings
 
             <a ui-sref="user.createlisting">
                 <span class="circle add_icon"><i class="fa fa-plus"></i>
@@ -10,48 +10,14 @@
         </header>
 
         <div class="listing_container col-xs-12 animated fadeInUp">
-            <div class="listing_item row">
-                <div class="col-xs-12">
+            <div class="listing_item row" ng-repeat="listing in listings">
+                <div class="col-xs-12 listing_content" >
                     <i class="fa fa-ellipsis-v"></i>
-                    test
+                    {{listing.title}}
+                    <span class="posted_at">Posted at: {{listing.created_at | date:'short'}}</span>
                 </div>
             </div>
-            <div class="listing_item row">
-                <div class="col-xs-12">
-                    test
-                </div>
-            </div>
-            <div class="listing_item row">
-                <div class="col-xs-12">
-                    test
-                </div>
-            </div>
-            <div class="listing_item row">
-                <div class="col-xs-12">
-                    test
-                </div>
-            </div>
-            <div class="listing_item row">
-                <div class="col-xs-12">
-                    test
-                </div>
-            </div>
-            <div class="listing_item row">
-                <div class="col-xs-12">
-                    test
-                </div>
-            </div><div class="listing_item row">
-                <div class="col-xs-12">
-                    test
-                </div>
-            </div><div class="listing_item row">
-                <div class="col-xs-12">
-                    test
-                </div>
-            </div><div class="listing_item row">
-                <div class="col-xs-12">
-                    test
-                </div>
-            </div>
+            
+            
         </div>   
 </div>

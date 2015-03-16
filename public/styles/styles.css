@@ -507,6 +507,8 @@ button:disabled {
     float: left;
 }
 
+
+
 #slide_in_nav .profile_name_container {
     width: 80%;
     height: 100%;
@@ -577,7 +579,22 @@ button:disabled {
 .listing_item {
     height: 80px;
     border-bottom: 1px solid #e9e9e9 !important;
-    line-height: 80px
+    /*line-height: 80px;*/
+    position: relative;
+}
+
+.listing_content {
+    position: relative;
+    height: 100%;
+    padding-top: 10px;
+}
+
+
+.posted_at {
+    font-size: 0.7em;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
 }
 
 .add_icon {
@@ -650,4 +667,408 @@ textarea {
     outline: none;
     width: 100%;
 
+}
+
+
+/*----------------------------------------
+    Public Listing View Styles
+----------------------------------------*/
+
+#public_listing_container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.public_listing_container_scroll {
+    width: 100%;
+    height: calc(100% - 60px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#public_listing_container > header {
+    height: 60px;
+    border-bottom: 1px solid #EEEEE9;
+    position: relative;
+    -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.2);
+    webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.2);
+    box-shadow: 1px 2px 3px rgba(0,0,0,.2);
+}
+
+#public_listing_container > header .fa.fa-star {
+    color: #EEE;
+    font-size: 1.8em;
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    transition: color 0.8s;
+}
+
+.favorite {
+    color: #4C88DB !important;
+}
+
+#public_listing_container .pic_container {
+    height: 300px;
+   /* background: #ccc;*/
+}
+
+#public_listing_container .pic_container > img {
+    
+  min-width: 100%;
+  height: 300px;
+
+}
+
+
+#public_listing_container .listing_info {
+    height: 60px;
+    border-bottom: 1px solid #EEEEE9;
+}
+
+.listing_info  .listing_title { 
+    display: block;
+    padding-top: 10px;
+    padding-left: 15px;
+    font-size: 1.3em;
+    color: #333;
+}
+
+.listing_info .seller_info {
+    display: block;
+    padding-left: 15px;
+    font-size: 0.8em;
+    color: #ccc;
+}
+
+.seller_name {
+    font-size: 1em;
+    font-weight: 500;
+    color: #333;
+}
+
+.listing_info .listing_price { 
+    display: block;
+    padding-top: 10px;
+    padding-right: 15px;
+    font-size: 0.8em;
+    color: #ccc;
+    text-align: right;
+}
+
+.listing_info .listing_price_amout {
+    display: block;
+    padding-right: 15px;
+    font-size: 1.3em;
+    color: #333;
+    text-align: right;
+}
+
+.description {
+    border-bottom: 1px solid #EEEEE9;
+}
+
+.description, .messages {
+    padding: 15px !important;
+}
+
+.messages_title {
+    background: #eee;
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.messages_title > .fa.fa-chevron-up {
+    color: #333;
+    font-size: 1.3em;
+    position: absolute;
+    right: 25px;
+    top: 11px;
+}
+
+.description > .description_title,  .messages > .messages_title {
+    display: block;
+    padding-bottom: 10px;
+    color: #ccc;
+}
+
+.messages {
+    height: auto;
+    padding-bottom: 15px;
+}
+
+.message {
+    position: relative;
+    padding-bottom: 10px;
+    
+}
+
+
+.message_submitted_by, .replayed_from {
+    display: inline-block;
+    font-size: 1em;
+    color: #333;
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+
+.message_by {
+    color: #ccc;
+    font-size: 0.8em;
+}
+
+.submitted_at, .replyed_at {
+    display: inline-block;
+    font-size: 0.8em;
+    color: #CCC;
+    position: absolute;
+    right: 15px;
+}
+
+.message_body, .response_body {
+    display: block;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+.message_response {
+    padding-top: 10px;
+}
+
+.message_line_break {
+    display: block;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #eee;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.ask_question {
+    display: inline-block;
+    background: #e9e9e9;
+    border-radius: 4px;
+    padding: 0 10px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #4C88DB;
+    position: absolute;
+    right: 60px;
+    top: 5px;
+
+}
+
+
+.btn-buy {
+    height: 70px;
+    background: #00C42D;
+    line-height: 70px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 200;
+    color: #fff;
+}
+
+.btn-ask_question {
+    height: 60px;
+    background: #ccc;
+    line-height: 60px;
+    text-align: center;
+
+}
+
+.messages_title > .fa.fa-plus {
+    color: #333;
+    font-size: 1.2em;
+    position: absolute;
+    right: 70px;
+    top: 14px;
+}
+
+.number_of_questions_circle {
+    display: block;
+    color: #333;
+    background: #E1e1e1;
+    height: 26px;
+    width: 26px;
+    border-radius: 2px;
+    text-align: center;
+    position: absolute;
+    top: 7px;
+    left: 90px;
+    line-height: 26px;
+}
+
+.number_of_questions {
+    position: relative;
+    font-size: 1em;
+    font-weight: 300;
+    top: 0px;
+    display: inline-block;
+    text-align: center;
+    
+}
+
+
+#post_question {
+    background: #eeeee9;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+
+
+
+/*---------------------------
+    Seller Info Pop Up
+-----------------------------*/
+
+#seller_info header {
+    height: 50px;
+    border-bottom: 1px solid #eeeee9;
+    position: relative;
+}
+
+header .seller_name {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 1.2em;
+}
+
+
+header .seller_joined_date {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    font-size: 0.9em;
+}
+
+
+
+.reviews_wrapper {
+    height: 250px;
+    padding: 0 15px;
+    overflow: auto;
+}
+
+.reviews_wrapper .review_header {
+    display: block;
+    height: 20px;
+    margin: 8px 0;
+    color: #ccc;
+}
+
+.review {
+    position: relative;
+    height: 125px;
+}
+
+.review .review_data {
+    display: inline-block;
+    top: 6px;
+    font-size: 0.8em;
+    position: absolute;
+    color: #ccc;
+}
+
+.review .review_item_title {
+    display: inline-block;
+    top: 20px;
+    font-size: 1.2em;
+    font-weight: 500;
+    position: absolute;
+}
+
+.review .review_rating {
+    display: inline-block;
+    top: 18px;
+    right: 25px;
+    font-size: 1em;
+    position: absolute;
+}
+
+.review .review_content {
+    display: block;
+    position: absolute;
+    top: 45px;
+    font-size: 0.9em;
+    padding-right: 15px;
+    line-height: 1em;
+}
+
+.number_of_reviews_circle {
+    display: block;
+    color: #333;
+    background: #E1e1e1;
+    height: 26px;
+    width: 26px;
+    border-radius: 2px;
+    text-align: center;
+    position: absolute;
+    top: 7px;
+    left: 130px;
+    line-height: 26px;
+} 
+
+.show_more_reviews {
+    width: 50%;
+    height: 40px;
+    border: 1px solid #31A5C8;
+    border-radius: 2px;
+    line-height: 40px;
+    text-align: center;
+    margin: 0 auto 30px auto;
+
+}
+
+
+/*---------------------------
+    log in Pop Up
+-----------------------------*/
+
+#login_modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: #e1e1e1;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+}
+
+#login_modal header {
+    height: 40%;
+    background: none;
+    position: relative;
+    top: 40px;
+}
+
+.pop_up_login_title {
+    font-size: 1.6em;
+    color: #31A5C8;
+    display: block;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.pop_up_login_sub_title {
+    font-size: 1.2em;
+    color: #333;
+    display: block;
+    font-weight: 100;
 }
