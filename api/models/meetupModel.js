@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var shortid = require('shortid');
 var Schema = mongoose.Schema;
 
 var meetupSchema = new Schema({

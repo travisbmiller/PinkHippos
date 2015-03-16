@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
+var shortid = require('shortid');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 var q = require('q');
 
 var userSchema = new Schema({
+	_id: { type: String, unique: true, 'default': shortid.generate },
 	firstName: { type: String, required: true },
 	lastName: { type: String, required: true },
 	email: { type: String, unique: true, require: true },
