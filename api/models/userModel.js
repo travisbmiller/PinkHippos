@@ -10,6 +10,11 @@ var userSchema = new Schema({
 	lastName: { type: String, required: true },
 	email: { type: String, unique: true, require: true },
 	password: { type: String, required: true },
+	notifications: [{
+		body: String,
+		createdAt: { type: Date, default: Date.now },
+		listing: { type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }
+	}],
 	phone: {
 		kind: { type: String, lowercase: true, enum: ['cell', 'home', 'work', 'other'] },
 		number: { type: String }
