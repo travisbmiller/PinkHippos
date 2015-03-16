@@ -10,7 +10,8 @@ var listingSchema = new Schema({
     img: [ Object ],
     buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
     seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
-	created_at : { type: Date }
+	created_at : { type: Date },
+	status: { type: String, enum: }
 });
 
 listingSchema.pre('save', function(next){

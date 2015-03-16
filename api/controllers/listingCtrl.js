@@ -70,7 +70,7 @@ module.exports = {
 
 		var user = req.user;
 
-		findListing(req.body.shortId)
+		findListing(req.body._id)
 
 			.then(function(listing) {
 
@@ -136,41 +136,11 @@ module.exports = {
 
 };
 
-var createShortId = function() {
-
-	var shortId;
-
-	var dfd = q.defer();
-
-	Listing.find({}, function(err, listings) {
-
-		if (err) {
-
-			dfd.reject(err);
-
-		} else {
-
-			console.log('Listings found: ', listings);
-
-			shortId = listings.length + 1;
-
-			console.log('Short ID generated: ', shortId);
-
-			dfd.resolve(shortId);
-
-		};
-
-	});
-
-	return dfd.promise;
-
-};
-
 var findListing = function(id) {
 
 	var dfd = q.defer();
 
-	Listing.findOne({ shortId: id }, function(err, listing) {
+	Listing.findOne({ _id: id }, function(err, listing) {
 
 		if (err) {
 
@@ -185,5 +155,11 @@ var findListing = function(id) {
 	});
 
 	return dfd.promise;
+
+};
+
+var purchaseCheck = function(listing) {
+
+	if (listing.)
 
 }
