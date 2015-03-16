@@ -59,7 +59,7 @@
 			- Fine tune registration and login pages
 			- User dashboard set up.
 
-<<<<<<< HEAD
+
 ### MEETING 3/6
 
 	- Chip: 
@@ -70,9 +70,6 @@
 
 		- Continue with building views for registration and dashboard. 
 
-
-
-=======
 ### MEETING 3/16
 	- mongoose/mongo shortId
 	- buying process
