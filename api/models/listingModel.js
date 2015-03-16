@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
+var shortid = require('shortid');
 var Schema = mongoose.Schema;
 
 var listingSchema = new Schema({
-	
+    _id: { type: String, unique: true, 'default': shortid.generate },
     title: String,
     price: String,
     description: String,
-	img: [ Object ],
+    img: [ Object ],
     buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
     seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
 	created_at : { type: Date }

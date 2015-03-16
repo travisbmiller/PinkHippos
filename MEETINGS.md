@@ -49,7 +49,6 @@
 	- add "watch" functionality to each listing for the user to see what items they are watching.
 
 ### MEETING 3/5
-
 	- Tasks: 
 		- Chip:
 			- GET with user ID in should return user 
@@ -60,6 +59,7 @@
 			- Fine tune registration and login pages
 			- User dashboard set up.
 
+<<<<<<< HEAD
 ### MEETING 3/6
 
 	- Chip: 
@@ -72,4 +72,8 @@
 
 
 
+=======
+### MEETING 3/16
+	- mongoose/mongo shortId
+	- buying process
 			
