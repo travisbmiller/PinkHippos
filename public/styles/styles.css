@@ -683,6 +683,14 @@ textarea {
     left: 0;
 }
 
+.public_listing_nav_title {
+    position: absolute;
+    top: 15px;
+    left: 40px;
+    color: #333;
+    font-size: 1.4em;
+}
+
 .public_listing_container_scroll {
     width: 100%;
     height: calc(100% - 60px);
@@ -704,7 +712,7 @@ textarea {
     font-size: 1.8em;
     position: absolute;
     right: 30px;
-    top: 20px;
+    top: 18px;
     transition: color 0.8s;
 }
 
