@@ -31,11 +31,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy({
-    
+
     usernameField: 'email',
-    
+
     passwordField: 'password'
-  
+
   }, function(username, password, done) {
 
 	User.findOne({ email: username }).exec().then(function(user) {
@@ -43,25 +43,25 @@ passport.use(new LocalStrategy({
 		console.log('User found with: ', user);
 
 		if (!user) {
-		
+
 			return done(null, false);
-		
+
 		};
-		
+
 		user.comparePassword(password).then(function(isMatch) {
 
 			console.log('isMatch: ', isMatch);
-		
+
 			if (!isMatch) {
-		
+
 				return done(null, false);
-		
+
 			};
-		
+
 			return done(null, user);
-		
+
 		});
-	
+
 	});
 
 }));
@@ -100,11 +100,9 @@ app.post('/api/buy', listingCtrl.buyItem);
 
 app.get('/api/listing/:id', listingCtrl.getListing);
 
-<<<<<<< HEAD
 app.get('/api/checkUser/:email', userCtrl.checkUser);
-=======
+
 app.get('/api/listings/:id', listingCtrl.getListings);
->>>>>>> 0c97a169e162cf06a19345cee6e75e915b86ac4b
 
 app.get('/api/user/:id', userCtrl.getUser);
 
