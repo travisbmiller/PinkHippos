@@ -1,4 +1,5 @@
 var Listing = require('../models/listingModel.js');
+var User = require('../models/userModel');
 var q = require('q');
 var fs = require('fs');
 
@@ -8,7 +9,7 @@ module.exports = {
 	addListing: function(req, res) {
 
         // console.log(req.body) // form fields
-        console.log(req.files) // form files
+        //console.log(req.files) // form files
 
         data = JSON.parse(req.body.data) // parsing incoming data.
         
@@ -82,6 +83,23 @@ module.exports = {
 
 			});
 
+	},
+
+	updateListing: function(req, res) {
+		req.body.updatedAt = Date.now();
+		Listing.findOneAndUpdate({_id: req.params.id}, req.body, function(err, post) {
+			res.json(post);
+
+			//notify user
+			var user = User.findOne({_id: post.user}).exec().then(function(user) {
+				user.notifications.push({
+					body: "Listing \" " + listing.title + " \" has been updated!!"
+				});
+				user.save(function(err) {
+					console.log("user was saved!");
+				});
+			});
+		});
 	}
 
 };

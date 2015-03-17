@@ -107,5 +107,8 @@ app.get('/api/user/:id', userCtrl.getUser);
 
 // app.get('/api/getReviews', reviewCtrl.getReviews);
 
+// PUT REQUESTS
+
+app.put('/api/listing/:id', listingCtrl.updateListing);
 
 app.listen(port)
