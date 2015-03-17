@@ -42,7 +42,7 @@ module.exports = {
 
 	getListing: function(req, res) {
 
-		var id = parseInt(req.params.id);
+		var id = req.params.id;
 
 		findListing(id)
 
@@ -91,20 +91,6 @@ module.exports = {
 					console.log('Update found this user ', user);
 
 				});
-
-				// user.save(function(err, user) {
-
-				// 	if (err) {
-
-				// 		return res.status(500).json(err);
-
-				// 	} else {
-
-				// 		return res.status(200).json('Save success!');
-
-				// 	}
-
-				// });
 
 			}, function(err) {
 
@@ -175,9 +161,3 @@ var findListing = function(id) {
 	return dfd.promise;
 
 };
-
-var purchaseCheck = function(listing) {
-
-	if (listing.)
-
-}
