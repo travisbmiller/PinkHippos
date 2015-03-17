@@ -10,19 +10,19 @@ module.exports = {
 	addListing: function(req, res) {
 
         // console.log(req.body) // form fields
-        console.log(req.files) // form files
+        //console.log(req.files) // form files
 
         data = JSON.parse(req.body.data) // parsing incoming data.
-        
+
         console.log(data)
-  
+
         var newListing = new Listing(data)
 
         if (req.files.file) {
             console.log("theres a file")
             newListing.img[0] = {
                 url: 'uploads/' + req.files.file.name
-            } 
+            }
         }
 
         newListing.save(function(err, listing) {
@@ -30,13 +30,13 @@ module.exports = {
                  if (err) {
                      console.log("err", err)
                      return res.status(500).json(err);
-                
+
                  } else {
                     console.log("success")
                      return res.status(200).json(listing);
-                
+
                  }
-                
+
              });
 	},
 
@@ -59,7 +59,7 @@ module.exports = {
 
     getListings: function (req, res) {
         console.log(req.params.id)
-        
+
         Listing.find({"seller" : req.params.id}, function (err, listings) {
             if (err) return res.status(500).json(err)
             return res.status(200).json(listings)
@@ -130,9 +130,27 @@ module.exports = {
 
 	},
 
+	updateListing: function(req, res) {
+		req.body.updatedAt = Date.now();
+		Listing.findOneAndUpdate({_id: req.params.id}, req.body, function(err, post) {
+			res.json(post);
+
+			//notify user
+			var user = User.findOne({_id: post.user}).exec().then(function(user) {
+				user.notifications.push({
+					body: "Listing \" " + listing.title + " \" has been updated!!"
+				});
+				user.save(function(err) {
+					console.log("user was saved!");
+				});
+			});
+		});
+	},
+
 	getSold: function(req, res) {},
 
 	getWatching: function(req, res) {}
+
 
 };
 

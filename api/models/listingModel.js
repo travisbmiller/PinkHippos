@@ -11,6 +11,7 @@ var listingSchema = new Schema({
     buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
     seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
     created_at : { type: Date },
+    updatedAt: { type: Date, default: Date.now },
     status: { type: String, enum: }
 });
 
