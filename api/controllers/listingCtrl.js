@@ -57,14 +57,14 @@ module.exports = {
 			});
 	},
 
-    getListings: function (req, res) {
-        console.log(req.params.id)
+  getListings: function (req, res) {
+      console.log(req.params.id)
 
-        Listing.find({"seller" : req.params.id}, function (err, listings) {
-            if (err) return res.status(500).json(err)
-            return res.status(200).json(listings)
-        })
-    },
+      Listing.find({"seller" : req.params.id}, function (err, listings) {
+          if (err) return res.status(500).json(err)
+          return res.status(200).json(listings)
+      })
+  },
 
 	buyItem: function(req, res) {
 
@@ -176,8 +176,9 @@ var findListing = function(id) {
 
 };
 
+
 var purchaseCheck = function(listing) {
 
-	if (listing.)
+	if (listing) {}
 
 }

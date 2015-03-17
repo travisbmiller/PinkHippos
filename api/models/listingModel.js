@@ -12,7 +12,7 @@ var listingSchema = new Schema({
     seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', indexed: true },
     created_at : { type: Date },
     updatedAt: { type: Date, default: Date.now },
-    status: { type: String, enum: }
+    status: { type: String, enum: ['In Progress', 'Something', 'Something'] }
 });
 
 listingSchema.pre('save', function(next){
