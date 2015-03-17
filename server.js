@@ -31,15 +31,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy({
-
-	usernameField: 'email',
-	passwordField: 'password'
-
-}, function(username, password, done) {
+    
+    usernameField: 'email',
+    
+    passwordField: 'password'
+  
+  }, function(username, password, done) {
 
 	User.findOne({ email: username }).exec().then(function(user) {
-
-		debugger;
 
 		console.log('User found with: ', user);
 
@@ -101,9 +100,19 @@ app.post('/api/buy', listingCtrl.buyItem);
 
 app.get('/api/listing/:id', listingCtrl.getListing);
 
+<<<<<<< HEAD
+app.get('/api/checkUser/:email', userCtrl.checkUser);
+=======
 app.get('/api/listings/:id', listingCtrl.getListings);
+>>>>>>> 0c97a169e162cf06a19345cee6e75e915b86ac4b
 
 app.get('/api/user/:id', userCtrl.getUser);
+
+app.get('/api/user/purchased', listingCtrl.getPurchased);
+
+app.get('/api/user/sold', listingCtrl.getSold);
+
+app.get('/api/user/watching', listingCtrl.getWatching);
 
 // app.get('/api/getReviews', reviewCtrl.getReviews);
 
