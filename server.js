@@ -111,5 +111,8 @@ app.get('/api/user/watching', listingCtrl.getWatching);
 
 app.post('/api/buy/:id', listingCtrl.buyItem);
 
+// PUT REQUESTS
+
+app.put('/api/listing/:id', listingCtrl.updateListing);
 
 app.listen(port)
