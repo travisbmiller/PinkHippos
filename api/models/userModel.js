@@ -13,7 +13,7 @@ var userSchema = new Schema({
 	notifications: [{
 		body: String,
 		createdAt: { type: Date, default: Date.now },
-		listing: { type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }
+		listing: { type: String, ref: 'Listing', indexed: true }
 	}],
 	phone: {
 		kind: { type: String, lowercase: true, enum: ['cell', 'home', 'work', 'other'] },
@@ -21,11 +21,11 @@ var userSchema = new Schema({
 	},
 	listings: {
 
-		watching: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }],
-		sellingInPro: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }],
-		buyingInPro: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }],
-		sold: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }],
-		purchased: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing', indexed: true }]
+		watching: [{ type: String, ref: 'Listing', indexed: true }],
+		sellingInPro: [{ type: String, ref: 'Listing', indexed: true }],
+		buyingInPro: [{ type: String, ref: 'Listing', indexed: true }],
+		sold: [{ type: String, ref: 'Listing', indexed: true }],
+		purchased: [{ type: String, ref: 'Listing', indexed: true }]
 
 	},
 	address: {

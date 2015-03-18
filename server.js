@@ -7,7 +7,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var multer = require('multer');
 var fs = require('fs')
-var resizeCrop = require('resize-crop');
 var User = require('./api/models/userModel');
 var listingCtrl = require('./api/controllers/listingCtrl');
 var reviewCtrl = require('./api/controllers/reviewCtrl');
@@ -94,8 +93,6 @@ app.post('/api/review', reviewCtrl.addReview);
 
 app.post('/api/meetup', meetupCtrl.addMeetup);
 
-app.post('/api/buy', listingCtrl.buyItem);
-
 // GET REQUESTS
 
 app.get('/api/listing/:id', listingCtrl.getListing);
@@ -112,7 +109,7 @@ app.get('/api/user/sold', listingCtrl.getSold);
 
 app.get('/api/user/watching', listingCtrl.getWatching);
 
-// app.get('/api/getReviews', reviewCtrl.getReviews);
+app.post('/api/buy/:id', listingCtrl.buyItem);
 
 // PUT REQUESTS
 

@@ -13,17 +13,17 @@ module.exports = {
         //console.log(req.files) // form files
 
         data = JSON.parse(req.body.data) // parsing incoming data.
-
+        console.log(req.files.file.name)
         console.log(data)
 
-        var newListing = new Listing(data)
 
         if (req.files.file) {
             console.log("theres a file")
-            newListing.img[0] = {
-                url: 'uploads/' + req.files.file.name
-            }
+            data.img = [ { url: '/uploads/' + req.files.file.name}];
+            console.log("after file is added", newListing)
         }
+
+        var newListing = new Listing(data)
 
         newListing.save(function(err, listing) {
                 console.log("saving")
@@ -42,19 +42,28 @@ module.exports = {
 
 	getListing: function(req, res) {
 
-		var id = parseInt(req.params.id);
+		var id = req.params.id;
 
-		findListing(id)
+		Listing
+            .findById(req.params.id)
+            .populate('seller')
+            .populate('img')
 
-			.then(function(listing) {
+            .exec(function (err, listing) {
+              if (err) return res.status(500).send(err);
+              return res.status(200).json(listing)
+        })
 
-				return res.status(200).json(listing);
 
-			}, function(err) {
+			// .then(function(listing) {
 
-				return res.status(500).json(err);
+			// 	return res.status(200).json(listing);
 
-			});
+			// }, function(err) {
+
+			// 	return res.status(500).json(err);
+
+			// });
 	},
 
   getListings: function (req, res) {
@@ -91,20 +100,6 @@ module.exports = {
 					console.log('Update found this user ', user);
 
 				});
-
-				// user.save(function(err, user) {
-
-				// 	if (err) {
-
-				// 		return res.status(500).json(err);
-
-				// 	} else {
-
-				// 		return res.status(200).json('Save success!');
-
-				// 	}
-
-				// });
 
 			}, function(err) {
 
@@ -175,6 +170,7 @@ var findListing = function(id) {
 	return dfd.promise;
 
 };
+
 
 
 var purchaseCheck = function(listing) {
