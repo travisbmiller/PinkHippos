@@ -14,8 +14,8 @@ module.exports = {
         //console.log(req.files) // form files
 
         data = JSON.parse(req.body.data) // parsing incoming data.
-        console.log(req.files.file.name)
-        console.log(data)
+        console.log('File Name: ', req.files.file.name);
+        console.log('Data: ', data);
 
 
         if (req.files.file) {
@@ -27,7 +27,7 @@ module.exports = {
         var newListing = new Listing(data)
         
         newListing.save(function(err, listing) {
-        	
+
                 console.log("saving")
                  if (err) {
                      console.log("err", err)
@@ -71,7 +71,8 @@ module.exports = {
 
               		.find({seller: listing.seller})
 
-              			.populate('seller', 'firstName' 'buyer', 'firstName')
+              			.populate('seller', 'firstName')
+              			.populate('buyer', 'firstName')
 
               			.exec(function(err, reviews) {
 
@@ -93,7 +94,7 @@ module.exports = {
               };
         });
 
-        q.all([dfd1.promise, dfd2.promise]);
+        q.all([dfd1.promise, dfd2.promise])
 
 
         	.then(function(data) {
@@ -111,12 +112,12 @@ module.exports = {
 
         		return res.status(500).json(err);
 
-        	})
+        	});
 
 	},
 
     getListings: function (req, res) {
-        console.log(req.params.id)
+        console.log('ID from get:isting:', req.params.id);
 
         Listing.find({"seller" : req.params.id}, function (err, listings) {
             if (err) return res.status(500).json(err)
