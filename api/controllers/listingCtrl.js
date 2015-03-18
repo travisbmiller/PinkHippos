@@ -24,7 +24,7 @@ module.exports = {
         }
 
         var newListing = new Listing(data)
-        
+
         newListing.save(function(err, listing) {
                 console.log("saving")
                  if (err) {
@@ -48,7 +48,7 @@ module.exports = {
             .findById(req.params.id)
             .populate('seller')
             .populate('img')
-            
+
             .exec(function (err, listing) {
               if (err) return res.status(500).send(err);
               return res.status(200).json(listing)
@@ -66,14 +66,14 @@ module.exports = {
 			// });
 	},
 
-    getListings: function (req, res) {
-        console.log(req.params.id)
+  getListings: function (req, res) {
+      console.log(req.params.id)
 
-        Listing.find({"seller" : req.params.id}, function (err, listings) {
-            if (err) return res.status(500).json(err)
-            return res.status(200).json(listings)
-        })
-    },
+      Listing.find({"seller" : req.params.id}, function (err, listings) {
+          if (err) return res.status(500).json(err)
+          return res.status(200).json(listings)
+      })
+  },
 
 	buyItem: function(req, res) {
 
@@ -131,12 +131,12 @@ module.exports = {
 			res.json(post);
 
 			//notify user
-			var user = User.findOne({_id: post.user}).exec().then(function(user) {
+			var user = User.findOne({_id: post.seller}).exec().then(function(user) {
 				user.notifications.push({
-					body: "Listing \" " + listing.title + " \" has been updated!!"
+					body: "Listing: (" + post.title + ") has been updated!!"
 				});
 				user.save(function(err) {
-					console.log("user was saved!");
+					console.log("---> notification sent");
 				});
 			});
 		});
@@ -170,3 +170,11 @@ var findListing = function(id) {
 	return dfd.promise;
 
 };
+
+
+
+var purchaseCheck = function(listing) {
+
+	if (listing) {}
+
+}
