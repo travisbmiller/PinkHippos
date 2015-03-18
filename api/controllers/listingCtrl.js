@@ -136,12 +136,12 @@ module.exports = {
 			res.json(post);
 
 			//notify user
-			var user = User.findOne({_id: post.user}).exec().then(function(user) {
+			var user = User.findOne({_id: post.seller}).exec().then(function(user) {
 				user.notifications.push({
-					body: "Listing \" " + listing.title + " \" has been updated!!"
+					body: "Listing: (" + post.title + ") has been updated!!"
 				});
 				user.save(function(err) {
-					console.log("user was saved!");
+					console.log("---> notification sent");
 				});
 			});
 		});
