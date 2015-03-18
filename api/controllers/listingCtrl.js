@@ -115,8 +115,7 @@ module.exports = {
         	});
 
 	},
-
-<<<<<<< HEAD
+	
     getListings: function (req, res) {
         console.log('ID from getListing:', req.params.id);
 
