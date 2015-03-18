@@ -1,6 +1,7 @@
 var Listing = require('../models/listingModel.js');
 var userCtrl = require('./userCtrl');
 var User = require('../models/userModel');
+var Review = require('../models/reviewModel');
 var q = require('q');
 var fs = require('fs');
 
@@ -26,6 +27,7 @@ module.exports = {
         var newListing = new Listing(data)
         
         newListing.save(function(err, listing) {
+        	
                 console.log("saving")
                  if (err) {
                      console.log("err", err)
@@ -40,9 +42,11 @@ module.exports = {
              });
 	},
 
-	getListing: function(req, res) {
+	getPublicListing: function(req, res) {
 
-		var id = req.params.id;
+		var dfd1 = q.defer();
+
+		var dfd2 = q.defer();
 
 		Listing
             .findById(req.params.id)
@@ -50,9 +54,64 @@ module.exports = {
             .populate('img')
             
             .exec(function (err, listing) {
-              if (err) return res.status(500).send(err);
-              return res.status(200).json(listing)
+              // if (err) return res.status(500).send(err);
+              // return res.status(200).json(listing)
+
+              if (err) {
+
+              	dfd1.reject(err);
+
+              } else {
+
+              	console.log('Listing Found: ', listing);
+
+              	dfd1.resolve(listing);
+
+              	Review
+
+              		.find({seller: listing.seller})
+
+              			.populate('seller', 'firstName' 'buyer', 'firstName')
+
+              			.exec(function(err, reviews) {
+
+	              			if (err) {
+
+	              				dfd2.reject(err);
+
+	              			} else {
+
+	              				console.log('Reviews Found: ', reviews);
+
+	              				dfd2.resolve(reviews);
+
+	              			};
+
+
+	              		})
+
+              };
         });
+
+        q.all([dfd1.promise, dfd2.promise]);
+
+
+        	.then(function(data) {
+
+        		var resObj = {
+
+        			listing: data[0],
+        			reviews: data[1]
+
+        		};
+
+        		return res.status(200).json(data);
+
+        	}, function(err) {
+
+        		return res.status(500).json(err);
+
+        	})
 
 	},
 

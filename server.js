@@ -95,7 +95,7 @@ app.post('/api/meetup', meetupCtrl.addMeetup);
 
 // GET REQUESTS
 
-app.get('/api/listing/:id', listingCtrl.getListing);
+app.get('/api/listing/:id', listingCtrl.getPublicListing);
 
 app.get('/api/checkUser/:email', userCtrl.checkUser);
 
