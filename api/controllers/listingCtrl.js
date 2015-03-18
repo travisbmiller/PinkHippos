@@ -46,24 +46,14 @@ module.exports = {
 
 		Listing
             .findById(req.params.id)
-            .populate('seller')
+            .populate('seller', 'firstName')
             .populate('img')
             
             .exec(function (err, listing) {
               if (err) return res.status(500).send(err);
               return res.status(200).json(listing)
-        })
+        });
 
-
-			// .then(function(listing) {
-
-			// 	return res.status(200).json(listing);
-
-			// }, function(err) {
-
-			// 	return res.status(500).json(err);
-
-			// });
 	},
 
     getListings: function (req, res) {
