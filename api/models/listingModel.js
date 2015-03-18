@@ -8,7 +8,7 @@ var listingSchema = new Schema({
     price: String,
     description: String,
     img: [
-      { 
+      {
         url: String,
       }
     ],
