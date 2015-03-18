@@ -144,7 +144,17 @@ module.exports = {
 
 	getSold: function(req, res) {},
 
-	getWatching: function(req, res) {}
+	getWatching: function(req, res) {},
+
+    deleteListing: function (req, res) {
+        Listing
+            .find({ _id: req.params.id })
+            .remove()
+            .exec(function (err, listing) {
+                if (err) return res.status(500).json(err)
+                    return res.status(200).json("your listing was deleted")
+            })
+    }
 
 
 };

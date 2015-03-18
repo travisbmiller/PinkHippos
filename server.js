@@ -115,4 +115,8 @@ app.post('/api/buy/:id', listingCtrl.buyItem);
 
 app.put('/api/listing/:id', listingCtrl.updateListing);
 
+// Delete REQUESTS
+
+app.delete('/api/listing/:id', listingCtrl.deleteListing);
+
 app.listen(port)
