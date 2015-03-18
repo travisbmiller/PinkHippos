@@ -1,6 +1,7 @@
 var Listing = require('../models/listingModel.js');
 var userCtrl = require('./userCtrl');
 var User = require('../models/userModel');
+var Review = require('../models/reviewModel');
 var q = require('q');
 var fs = require('fs');
 
@@ -13,8 +14,8 @@ module.exports = {
         //console.log(req.files) // form files
 
         data = JSON.parse(req.body.data) // parsing incoming data.
-        console.log(req.files.file.name)
-        console.log(data)
+        console.log('File Name: ', req.files.file.name);
+        console.log('Data: ', data);
 
 
         if (req.files.file) {
@@ -26,6 +27,7 @@ module.exports = {
         var newListing = new Listing(data)
 
         newListing.save(function(err, listing) {
+
                 console.log("saving")
                  if (err) {
                      console.log("err", err)
@@ -40,34 +42,82 @@ module.exports = {
              });
 	},
 
-	getListing: function(req, res) {
+	getPublicListing: function(req, res) {
 
-		var id = req.params.id;
+		var dfd1 = q.defer();
+
+		var dfd2 = q.defer();
 
 		Listing
             .findById(req.params.id)
-            .populate('seller')
+            .populate('seller', 'firstName')
             .populate('img')
 
             .exec(function (err, listing) {
-              if (err) return res.status(500).send(err);
-              return res.status(200).json(listing)
-        })
+              // if (err) return res.status(500).send(err);
+              // return res.status(200).json(listing)
+
+              if (err) {
+
+              	dfd1.reject(err);
+
+              } else {
+
+              	console.log('Listing Found: ', listing);
+
+              	dfd1.resolve(listing);
+
+              	Review
+
+              		.find({seller: listing.seller})
+
+              			.populate('seller', 'firstName')
+              			.populate('buyer', 'firstName')
+
+              			.exec(function(err, reviews) {
+
+	              			if (err) {
+
+	              				dfd2.reject(err);
+
+	              			} else {
+
+	              				console.log('Reviews Found: ', reviews);
+
+	              				dfd2.resolve(reviews);
+
+	              			};
 
 
-			// .then(function(listing) {
+	              		})
 
-			// 	return res.status(200).json(listing);
+              };
+        });
 
-			// }, function(err) {
+        q.all([dfd1.promise, dfd2.promise])
 
-			// 	return res.status(500).json(err);
 
-			// });
+        	.then(function(data) {
+
+        		var resObj = {
+
+        			listing: data[0],
+        			reviews: data[1]
+
+        		};
+
+        		return res.status(200).json(data);
+
+        	}, function(err) {
+
+        		return res.status(500).json(err);
+
+        	});
+
 	},
-
-  getListings: function (req, res) {
-      console.log(req.params.id)
+	
+    getListings: function (req, res) {
+        console.log('ID from getListing:', req.params.id);
 
       Listing.find({"seller" : req.params.id}, function (err, listings) {
           if (err) return res.status(500).json(err)
