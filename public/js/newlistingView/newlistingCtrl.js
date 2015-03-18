@@ -26,6 +26,7 @@ app.controller('NewListingCtrl', function ($scope, $upload, $http, $state) {
         }).success(function (data, status, headers, config) {
             if (config.file) {
                 console.log('file ' + config.file[0].name + ' uploaded. Response: ', data);
+                $state.go('user.listings')
             } else {
                 console.log(data)
                 $state.go('user.listings')
