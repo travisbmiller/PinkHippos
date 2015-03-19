@@ -115,7 +115,7 @@ module.exports = {
         	});
 
 	},
-	
+
     getListings: function (req, res) {
         console.log('ID from getListing:', req.params.id);
 
@@ -125,37 +125,136 @@ module.exports = {
       })
   },
 
-	buyItem: function(req, res) {
+	holdItem: function(req, res) {
 
-		var user = req.user;
-
-		findListing(req.body._id)
-
-			.then(function(listing) {
-
-				console.log('Listing found: ', listing);
-
-				user.listings.purchased.push(listing._id);
-
-				newArr = user.listings.purchased;
-
-				console.log('New array: ', newArr);
-
-				User.findOneAndUpdate({ email: user.email }, { listing: {
-
-					purchased: newArr
-
-				}}, function (user) {
-
-					console.log('Update found this user ', user);
-
+		req.body.updatedAt = Date.now();
+		Listing.findOneAndUpdate({_id: req.params.id}, req.body, function(err, item) {
+			if (item.status !== 'purchased') {
+				res.json(item);
+				item.status = 'inProgress';
+				item.save(function(err) {
+					console.log('---> item status changed');
 				});
+				console.log('This is the item: ', item);
+				//notify user
+				var user = User.findOne({_id: item.seller}).exec().then(function(user) {
+					user.notifications.push({
+						body: "Listing: '" + item.title + "' has been reserved."
+					});
+					user.save(function(err) {
+						console.log("---> notification sent");
+					});
+				});
+			}
+		});
 
-			}, function(err) {
 
-				return res.status(500).json(err);
+		// var user = req.user;
+		//
+		// console.log('Here is req.params: ', req.params);
+		//
+		// findListing(req.params.id)
+		//
+		// 	.then(function(listing) {
+		//
+		// 		console.log('Listing found: ', listing);
+		//
+		// 		listing.status = 'inProgress';
+		//
+		// 		user.listings.buyingInPro.push(listing._id);
+		//
+		// 		newArr = user.listings.buyingInPro;
+		//
+		// 		console.log('New array: ', newArr);
+		//
+		// 		User.findOneAndUpdate({ email: user.email }, { listing: {
+		//
+		// 			buyingInPro: newArr
+		//
+		// 		}}, function (user) {
+		//
+		// 			console.log('Update found this user ', user);
+		//
+		// 		});
+		//
+		// 		Listing.findOneAndUpdate({ _id: req.params.id }, { listing: {
+		//
+		// 			status: 'inProgress'
+		//
+		// 		}}, function (listing) {
+		//
+		// 			res.status(200).json(user);
+		//
+		// 		})
+		//
+		//
+		// 	}, function(err) {
+		//
+		// 		return res.status(500).json(err);
+		//
+		// 	});
 
-			});
+	},
+
+	transferFunds: function(req, res) {
+
+		req.body.updatedAt = Date.now();
+		Listing.findOneAndUpdate({_id: req.params.id}, req.body, function(err, item) {
+			res.json(item);
+			if (item.status === 'inProgress') {
+				item.status = 'purchased';
+				item.save(function(err) {
+					console.log('---> item status changed');
+				});
+				console.log('This is the item: ', item);
+				//notify user
+				var user = User.findOne({_id: item.seller}).exec().then(function(user) {
+					user.notifications.push({
+						body: "Listing: '" + item.title + "' has been purchased."
+					});
+					user.save(function(err) {
+						console.log("---> notification sent");
+					});
+				});
+			}
+		});
+
+
+		// var user = req.user;
+		//
+		// findListing(req.body._id)
+		//
+		// 	.then(function(listing) {
+		//
+		// 		user.listings.purchased.push(listing._id);
+		//
+		// 		newArr = user.listings.purchased;
+		//
+		// 		User.findOneAndUpdate({ email: user.email }, { listing: {
+		//
+		// 			buyingInPro: newArr
+		//
+		// 		}}, function (user) {
+		//
+		// 			res.status(200).json(user);
+		//
+		// 		});
+		//
+		// 		Listing.findOneAndUpdate({ _id: req.body._id }, { listing: {
+		//
+		// 			status: 'purchased'
+		//
+		// 		}}, function (listing) {
+		//
+		// 			res.status(200).json(user);
+		//
+		// 		})
+		//
+		// 	}, function(err) {
+		//
+		// 		return res.status(500).json(err);
+		//
+		// 	});
 
 	},
 
@@ -177,13 +276,13 @@ module.exports = {
 
 	updateListing: function(req, res) {
 		req.body.updatedAt = Date.now();
-		Listing.findOneAndUpdate({_id: req.params.id}, req.body, function(err, post) {
-			res.json(post);
-
+		Listing.findOneAndUpdate({_id: req.params.id}, req.body, function(err, item) {
+			res.json(item);
+			console.log('This is the item: ', item);
 			//notify user
-			var user = User.findOne({_id: post.seller}).exec().then(function(user) {
+			var user = User.findOne({_id: item.seller}).exec().then(function(user) {
 				user.notifications.push({
-					body: "Listing: (" + post.title + ") has been updated!!"
+					body: "Listing: (" + item.title + ") has been updated!!"
 				});
 				user.save(function(err) {
 					console.log("---> notification sent");
