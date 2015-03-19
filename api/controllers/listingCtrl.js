@@ -192,10 +192,6 @@ module.exports = {
 		});
 	},
 
-	getSold: function(req, res) {},
-
-	getWatching: function(req, res) {},
-
     deleteListing: function (req, res) {
         Listing
             .find({ _id: req.params.id })
