@@ -114,9 +114,9 @@ app.get('/api/user/watching', listingCtrl.getWatching);
 app.put('/api/listing/:id', listingCtrl.updateListing);
 
 	//buying process --->
-app.put('/api/buy/:id', listingCtrl.holdItem);
+app.put('/api/hold/:id', listingCtrl.holdItem);
 
-app.put('/api/pay/:id', listingCtrl.transferFunds);
+app.put('/api/buy/:id', listingCtrl.transferFunds);
 
 // Delete REQUESTS
 

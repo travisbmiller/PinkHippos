@@ -129,21 +129,23 @@ module.exports = {
 
 		req.body.updatedAt = Date.now();
 		Listing.findOneAndUpdate({_id: req.params.id}, req.body, function(err, item) {
-			res.json(item);
-			item.status = 'inProgress';
-			item.save(function(err) {
-				console.log('---> item status changed');
-			});
-			console.log('This is the item: ', item);
-			//notify user
-			var user = User.findOne({_id: item.seller}).exec().then(function(user) {
-				user.notifications.push({
-					body: "Listing: (" + item.title + ") has been reserved."
+			if (item.status !== 'purchased') {
+				res.json(item);
+				item.status = 'inProgress';
+				item.save(function(err) {
+					console.log('---> item status changed');
 				});
-				user.save(function(err) {
-					console.log("---> notification sent");
+				console.log('This is the item: ', item);
+				//notify user
+				var user = User.findOne({_id: item.seller}).exec().then(function(user) {
+					user.notifications.push({
+						body: "Listing: '" + item.title + "' has been reserved."
+					});
+					user.save(function(err) {
+						console.log("---> notification sent");
+					});
 				});
-			});
+			}
 		});
 
 
@@ -199,20 +201,22 @@ module.exports = {
 		req.body.updatedAt = Date.now();
 		Listing.findOneAndUpdate({_id: req.params.id}, req.body, function(err, item) {
 			res.json(item);
-			item.status = 'inProgress';
-			item.save(function(err) {
-				console.log('---> item status changed');
-			});
-			console.log('This is the item: ', item);
-			//notify user
-			var user = User.findOne({_id: item.seller}).exec().then(function(user) {
-				user.notifications.push({
-					body: "Listing: (" + item.title + ") has been purchased."
+			if (item.status === 'inProgress') {
+				item.status = 'purchased';
+				item.save(function(err) {
+					console.log('---> item status changed');
 				});
-				user.save(function(err) {
-					console.log("---> notification sent");
+				console.log('This is the item: ', item);
+				//notify user
+				var user = User.findOne({_id: item.seller}).exec().then(function(user) {
+					user.notifications.push({
+						body: "Listing: '" + item.title + "' has been purchased."
+					});
+					user.save(function(err) {
+						console.log("---> notification sent");
+					});
 				});
-			});
+			}
 		});
 
 
