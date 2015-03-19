@@ -276,13 +276,14 @@ module.exports = {
 
 	updateListing: function(req, res) {
 		req.body.updatedAt = Date.now();
+		console.log('##### req.params: ', req.params);
 		Listing.findOneAndUpdate({_id: req.params.id}, req.body, function(err, item) {
 			res.json(item);
 			console.log('This is the item: ', item);
 			//notify user
 			var user = User.findOne({_id: item.seller}).exec().then(function(user) {
 				user.notifications.push({
-					body: "Listing: (" + item.title + ") has been updated!!"
+					body: "Listing: '" + item.title + "' has been updated!!"
 				});
 				user.save(function(err) {
 					console.log("---> notification sent");
