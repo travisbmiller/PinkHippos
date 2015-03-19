@@ -75,7 +75,7 @@ module.exports = {
       })
   },
 
-	buyItem: function(req, res) {
+	holdItem: function(req, res) {
 
 		var user = req.user;
 
@@ -85,21 +85,72 @@ module.exports = {
 
 				console.log('Listing found: ', listing);
 
-				user.listings.purchased.push(listing._id);
+				user.listings.buyingInPro.push(listing._id);
 
-				newArr = user.listings.purchased;
+				newArr = user.listings.buyingInPro;
 
 				console.log('New array: ', newArr);
 
 				User.findOneAndUpdate({ email: user.email }, { listing: {
 
-					purchased: newArr
+					buyingInPro: newArr
 
 				}}, function (user) {
 
 					console.log('Update found this user ', user);
 
 				});
+
+				Listing.findOneAndUpdate({ _id: req.body._id }, { listing: {
+
+					status: 'inProgress'
+
+				}}, function (listing) {
+
+					res.status(200).json(user);
+
+				})
+
+
+			}, function(err) {
+
+				return res.status(500).json(err);
+
+			});
+
+	},
+
+	transferFunds: function(req, res) {
+
+		var user = req.user;
+
+		findListing(req.body._id)
+
+			.then(function(listing) {
+
+				user.listings.purchased.push(listing._id);
+
+				newArr = user.listings.purchased;
+
+				User.findOneAndUpdate({ email: user.email }, { listing: {
+
+					buyingInPro: newArr
+
+				}}, function (user) {
+
+					res.status(200).json(user);
+
+				});
+
+				Listing.findOneAndUpdate({ _id: req.body._id }, { listing: {
+
+					status: 'purchased'
+
+				}}, function (listing) {
+
+					res.status(200).json(user);
+
+				})
 
 			}, function(err) {
 
