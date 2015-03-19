@@ -95,7 +95,7 @@ app.post('/api/meetup', meetupCtrl.addMeetup);
 
 // GET REQUESTS
 
-app.get('/api/listing/:id', listingCtrl.getListing);
+app.get('/api/listing/:id', listingCtrl.getPublicListing);
 
 app.get('/api/checkUser/:email', userCtrl.checkUser);
 
@@ -114,5 +114,9 @@ app.post('/api/buy/:id', listingCtrl.buyItem);
 // PUT REQUESTS
 
 app.put('/api/listing/:id', listingCtrl.updateListing);
+
+// Delete REQUESTS
+
+app.delete('/api/listing/:id', listingCtrl.deleteListing);
 
 app.listen(port)

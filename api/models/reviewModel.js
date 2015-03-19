@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var reviewSchema = new Schema({
 	item: { type: String },
+	seller: { type: String, ref: 'User', indexed: true },
 	review: {
 		buyer: { type: String, ref: 'User', indexed: true },
 		comment: { type: String },
