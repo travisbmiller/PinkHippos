@@ -109,11 +109,14 @@ app.get('/api/user/sold', listingCtrl.getSold);
 
 app.get('/api/user/watching', listingCtrl.getWatching);
 
-app.post('/api/buy/:id', listingCtrl.buyItem);
-
 // PUT REQUESTS
 
 app.put('/api/listing/:id', listingCtrl.updateListing);
+
+	//buying process --->
+app.put('/api/buy/:id', listingCtrl.holdItem);
+
+app.put('/api/pay/:id', listingCtrl.transferFunds);
 
 // Delete REQUESTS
 
