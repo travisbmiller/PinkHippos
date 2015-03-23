@@ -19,7 +19,10 @@ app.directive('listingOptionModal', function () {
 
             $scope.viewlisting = function () {
                 console.log("go to view")
-                $state.go('previewListing', {listing: "d"})
+                console.log(ListingService.selectedListing._id)
+                $state.go('previewListing', {listing: ListingService.selectedListing._id})
+                ListingService.showListingModal = false;
+
             }
 
             $scope.editlisting = function () {

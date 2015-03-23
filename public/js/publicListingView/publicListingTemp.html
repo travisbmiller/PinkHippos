@@ -1,4 +1,4 @@
-<div ng-show="post_a_question" id="post_question" class="animated slideInUp">
+<!-- <div ng-show="post_a_question" id="post_question" class="animated slideInUp">
     <div ng-click="post_a_question = false">close me</div>
     <div class="row">
         
@@ -12,11 +12,11 @@
         </div>
       
     </div>
-</div>
+</div> -->
 
     <!-- Log In Modal -->
 
-<div ng-show="login_pop_up" id="login_modal">
+<!-- <div ng-show="login_pop_up" id="login_modal">
 
     <header class="row">
 
@@ -73,13 +73,13 @@
             </section>
         </div>
 
-    <!-- End of Sign In -->
+   
 
         </div>
 
     </header>
 
-</div>
+</div> -->
 
 
 <div id="public_listing_container">
@@ -94,7 +94,7 @@
        
         <div class="row ">
             <div class="col-xs-12 pic_container">
-                <img src="../../uploads/test.jpg"/>
+                 <img ng-src="{{listing.img}}"/>
             </div>
         </div>
 
@@ -102,15 +102,15 @@
             <div class="col-xs-12">
                 <div class="row">
                     <div class="col-xs-8 left listing_info">
-                        <span class="listing_title">Listing Title Here</span>
+                        <span class="listing_title">{{listing.title}}</span>
                         <span class="seller_info">Seller: 
-                            <span class="seller_name" ng-click="show_seller_info = true">Travis</span>
+                            <span class="seller_name" ng-click="show_seller_info = true">{{listing.seller.firstName}}</span>
                         </span>
 
                     </div>
                     <div class="col-xs-4 right listing_info">
                         <span class="listing_price">Price</span>
-                        <span class="listing_price_amout">$10.00</span>
+                        <span class="listing_price_amout">${{listing.price}}</span>
 
                     </div>
                 </div>
@@ -123,12 +123,7 @@
 
                 <span class="description_title"> Description </span>
 
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                {{listing.description}}
                 </div>
             </div>
         </div>

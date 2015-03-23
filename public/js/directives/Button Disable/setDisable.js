@@ -7,6 +7,10 @@ app.directive('slideToggleBody', function () {
             
         },
         link: function (scope, el, attrs) {
+            // on page load have body hidden
+            $(el).parent().next(".body_toggle").slideUp()
+
+            // toggle body on click
             el.on('click', function () {
                 console.log("I was clicked")
                 console.log(el)
