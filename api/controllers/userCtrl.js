@@ -142,6 +142,10 @@ module.exports = {
 
 		return dfd.promise;
 
+	},
+
+	watchItem: function(req, res) {
+		
 	}
 
 };
