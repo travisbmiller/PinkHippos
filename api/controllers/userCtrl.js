@@ -2,6 +2,7 @@ var User = require('../models/userModel');
 var q = require('q');
 var fs = require('fs')
 var easyimg = require('easyimage');
+var Listing = require('../models/listingModel');
 
 module.exports = {
 
@@ -107,7 +108,8 @@ module.exports = {
 					res.status(500).json(err);
 
 				} else if (user) {
-
+					
+					// listingsCheck(user);
 					// user.listings.watching[0].populate('seller');
 
 					res.status(200).json(user);
@@ -142,6 +144,48 @@ module.exports = {
 
 		return dfd.promise;
 
+	},
+
+	watchItem: function(req, res) {
+		Listing.findOneAndUpdate({ _id: req.params.id }, req.body, function(err, item) {
+			if (item.status !== 'purchased') {
+				var user = User.findOne({_id: item.buyer}).exec().then(function(user) {
+					user.listings.watching.push(item);
+					user.notifications.push({
+						body: "You are watching listing: '" + item.title + "'"
+					});
+					user.save(function(err) {
+						console.log("---> buyer notification sent");
+					});
+				});
+			}
+		});
+
+
+
+
+
+		
 	}
 
 };
+
+var listingsCheck = function(user) {
+
+	catArr = ['watching', 'purchased', 'sold', 'sellingInPro', 'buyingInPro'];
+
+	for (var i = 0; i < catArr.length; i++) {
+
+		if(user.listings[catArr[i]]) {
+
+			console.log('Listing poplation round: ', i + 1);
+
+			console.log('listings: ', user.listings[catArr[i]]);
+
+			user.listings[catArr[i]].populate('seller');
+
+		}
+	
+	};
+
+}
