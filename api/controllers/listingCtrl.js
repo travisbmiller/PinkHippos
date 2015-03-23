@@ -49,7 +49,7 @@ module.exports = {
 		var dfd2 = q.defer();
 
 		Listing
-            .findById(req.params.id)
+            .find({shortId: req.params.id})
             .populate('seller', 'firstName')
             .populate('img')
 
@@ -61,7 +61,15 @@ module.exports = {
 
               	dfd1.reject(err);
 
+              	return res.status(500).json(err);
+
               } else {
+
+              	if (!listing) {
+
+              		return res.status(404).end();
+
+              	}
 
               	console.log('Listing Found: ', listing);
 
