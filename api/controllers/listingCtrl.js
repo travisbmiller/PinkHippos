@@ -136,6 +136,11 @@ module.exports = {
 					console.log('---> item status changed');
 				});
 				console.log('This is the item: ', item);
+
+				// add buyer to listing
+				console.log(req.body.user);
+				item.buyersInPro.push(req.body.user);
+
 				// notify seller
 				var user = User.findOne({_id: item.seller}).exec().then(function(user) {
 					user.notifications.push({
@@ -145,6 +150,7 @@ module.exports = {
 						console.log("---> seller notification sent");
 					});
 				});
+
 				// notify buyer
 				var user = User.findOne({_id: item.buyer}).exec().then(function(user) {
 					user.notifications.push({
