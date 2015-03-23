@@ -61,7 +61,15 @@ module.exports = {
 
               	dfd1.reject(err);
 
+              	return res.status(500).json(err);
+
               } else {
+
+              	if (!listing) {
+
+              		return res.status(404).end();
+
+              	}
 
               	console.log('Listing Found: ', listing);
 
