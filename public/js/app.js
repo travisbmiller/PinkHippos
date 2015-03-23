@@ -17,6 +17,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 } 
             }
         })
+        .state('buying', {
+            url: '/buy',
+            templateUrl: 'js/reserveListingView/reserveListingTemp.html', 
+            controller: 'ReserveListingCtrl'
+            // resolve: {
+            //     ListingData: function ($stateParams, ListingService) {
+            //         return ListingService.getListing($stateParams.listing)
+            //     } 
+            // }
+        })
         .state('user', {
             url: "/:user",
             templateUrl: "js/userView/userTemp.html",
