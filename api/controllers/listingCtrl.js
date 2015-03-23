@@ -141,10 +141,13 @@ module.exports = {
 				console.log(req.body.user);
 				item.buyersInPro.push(req.body.user);
 
+				// add listing to user model
+				User.listings.buyingInPro.push(item);
+
 				// notify seller
 				var user = User.findOne({ _id: item.seller }).exec().then(function(user) {
 					user.notifications.push({
-						body: "Listing: '" + item.title + "' has been reserved."
+						body: "Listing: '" + item.title + "' has been reserved by: " + req.body.user + "."
 					});
 					user.save(function(err) {
 						console.log("---> seller notification sent");
