@@ -108,6 +108,8 @@ app.get('/api/user/:id', userCtrl.getUser);
 app.put('/api/listing/:id', listingCtrl.updateListing);
 
 	//buying process --->
+app.put('/api/watch/:id', userCtrl.watchItem);
+
 app.put('/api/hold/:id', listingCtrl.holdItem);
 
 app.put('/api/buy/:id', listingCtrl.transferFunds);
