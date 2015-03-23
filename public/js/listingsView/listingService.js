@@ -17,4 +17,17 @@ app.service('ListingService', function ($http) {
 
     }
 
+    this.deletelisting = function (id) {
+        console.log(id)
+        return $http({
+            method: 'DELETE',
+            url: '/api/listing/' + id
+        })
+    }
+
+    this.getPublicListing
+
+    this.selectedListing = {};
+    this.showListingModal = false;
+    this.show_listing_confirm_delete = false;
 })

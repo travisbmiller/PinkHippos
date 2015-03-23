@@ -1,5 +1,6 @@
+<div ng-show="showLisitingOptionsModal" class="overlay" style="position: fixed;"></div>
 <div id="dashboard_view">
-
+        <listing-option-modal ng-show="showLisitingOptionsModal" deletelisting="deletelisting(id)"></listing-option-modal>
         <header class="listing_header col-xs-12">
             {{listings.length}} Current Listings
 
@@ -12,7 +13,9 @@
         <div class="listing_container col-xs-12 animated fadeInUp">
             <div class="listing_item row" ng-repeat="listing in listings">
                 <div class="col-xs-12 listing_content" >
-                    <i class="fa fa-ellipsis-v"></i>
+                    <span ng-click="listingOptionsModal(listing)">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </span>
                     {{listing.title}}
                     <span class="posted_at">Posted at: {{listing.created_at | date:'short'}}</span>
                 </div>

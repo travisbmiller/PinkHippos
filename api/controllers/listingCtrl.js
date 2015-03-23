@@ -14,13 +14,13 @@ module.exports = {
         //console.log(req.files) // form files
 
         data = JSON.parse(req.body.data) // parsing incoming data.
-        console.log('File Name: ', req.files.file.name);
-        console.log('Data: ', data);
+        // console.log('File Name: ', req.files.file.name);
+        // console.log('Data: ', data);
 
 
         if (req.files.file) {
             console.log("theres a file")
-            data.img = [ { url: '/uploads/' + req.files.file.name}];
+            data.img = [{ url: '/uploads/' + req.files.file.name}];
             console.log("after file is added", newListing)
         }
 
