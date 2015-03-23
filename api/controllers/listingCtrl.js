@@ -136,17 +136,25 @@ module.exports = {
 					console.log('---> item status changed');
 				});
 				console.log('This is the item: ', item);
+
+				// add buyer to listing
+				console.log(req.body.user);
+				item.buyersInPro.push(req.body.user);
+
 				// notify seller
-				var user = User.findOne({_id: item.seller}).exec().then(function(user) {
+				var user = User.findOne({ _id: item.seller }).exec().then(function(user) {
+					user.listings.sellingInPro.push(item);
 					user.notifications.push({
-						body: "Listing: '" + item.title + "' has been reserved."
+						body: "Listing: '" + item.title + "' has been reserved by: " + req.body.user + "."
 					});
 					user.save(function(err) {
 						console.log("---> seller notification sent");
 					});
 				});
+
 				// notify buyer
-				var user = User.findOne({_id: item.buyer}).exec().then(function(user) {
+				var user = User.findOne({ _id: item.buyersInPro }).exec().then(function(user) {
+					user.listings.buyingInPro.push(item);
 					user.notifications.push({
 						body: "You have reserved listing: '" + item.title + "'"
 					});
@@ -216,8 +224,9 @@ module.exports = {
 					console.log('---> item status changed');
 				});
 				console.log('This is the item: ', item);
-				//notify user
+				//notify seller
 				var user = User.findOne({_id: item.seller}).exec().then(function(user) {
+					user.listings.sold.push(item);
 					user.notifications.push({
 						body: "Listing: '" + item.title + "' has been purchased."
 					});
@@ -227,6 +236,7 @@ module.exports = {
 				});
 				// notify buyer
 				var user = User.findOne({_id: item.buyer}).exec().then(function(user) {
+					user.listings.purchased.push(item);
 					user.notifications.push({
 						body: "You have purchased listing: '" + item.title + "'"
 					});
