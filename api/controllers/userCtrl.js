@@ -92,14 +92,13 @@ module.exports = {
 
 		userId = req.params.id;
 
-		User.findById(userId) 
+		User.findById(userId)
 
-			.populate({
-
-				path: 'listings',
-				select: 'watching sellingInPro buyingInPro sold purchased'
-				
-			})
+			.populate('listings.watching')
+			.populate('listings.purchased')
+			.populate('listings.sold')
+			.populate('listings.sellingInPro')
+			.populate('listings.buyingInPro')
 
 			.exec(function(err, user) {
 
@@ -108,6 +107,8 @@ module.exports = {
 					res.status(500).json(err);
 
 				} else if (user) {
+
+					user.listings.watching[0].populate('seller');
 
 					res.status(200).json(user);
 

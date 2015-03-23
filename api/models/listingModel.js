@@ -13,6 +13,7 @@ var listingSchema = new Schema({
       }
     ],
     buyer: { type: String, ref: 'User', indexed: true },
+    buyersInPro: [{type: String, ref: 'User'}],
     seller: { type: String, ref: 'User', indexed: true },
 	  created_at: { type: Date },
     status: { type: String, enum: ['active', 'inProgress', 'purchased'], default: 'active'}
