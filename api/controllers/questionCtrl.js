@@ -15,7 +15,7 @@ module.exports = {
 		});
 	},
 
-	replyQuestion: function(req, res) {
+	answerQuestion: function(req, res) {
 		Question.findOneAndUpdate({_id: req.params.id}, req.body, function(err, question) {
 			if (err) {
 				console.log('replyQuestion err: ', err);

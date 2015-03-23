@@ -93,6 +93,8 @@ app.post('/api/review', reviewCtrl.addReview);
 
 app.post('/api/meetup', meetupCtrl.addMeetup);
 
+app.post('/api/question', questionCtrl.askQuestion);
+
 // GET REQUESTS
 
 app.get('/api/listing/:id', listingCtrl.getPublicListing);
@@ -106,6 +108,8 @@ app.get('/api/user/:id', userCtrl.getUser);
 // PUT REQUESTS
 
 app.put('/api/listing/:id', listingCtrl.updateListing);
+
+app.put('/api/question/:id', questionCtrl.answerQuestion);
 
 	//buying process --->
 app.put('/api/watch/:id', userCtrl.watchItem);
