@@ -136,13 +136,22 @@ module.exports = {
 					console.log('---> item status changed');
 				});
 				console.log('This is the item: ', item);
-				//notify user
+				// notify seller
 				var user = User.findOne({_id: item.seller}).exec().then(function(user) {
 					user.notifications.push({
 						body: "Listing: '" + item.title + "' has been reserved."
 					});
 					user.save(function(err) {
-						console.log("---> notification sent");
+						console.log("---> seller notification sent");
+					});
+				});
+				// notify buyer
+				var user = User.findOne({_id: item.buyer}).exec().then(function(user) {
+					user.notifications.push({
+						body: "You have reserved listing: '" + item.title + "'"
+					});
+					user.save(function(err) {
+						console.log("---> buyer notification sent");
 					});
 				});
 			}
@@ -214,6 +223,15 @@ module.exports = {
 					});
 					user.save(function(err) {
 						console.log("---> notification sent");
+					});
+				});
+				// notify buyer
+				var user = User.findOne({_id: item.buyer}).exec().then(function(user) {
+					user.notifications.push({
+						body: "You have purchased listing: '" + item.title + "'"
+					});
+					user.save(function(err) {
+						console.log("---> buyer notification sent");
 					});
 				});
 			}
