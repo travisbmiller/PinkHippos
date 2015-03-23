@@ -2,6 +2,7 @@ var User = require('../models/userModel');
 var q = require('q');
 var fs = require('fs')
 var easyimg = require('easyimage');
+var Listing = require('../models/listingModel');
 
 module.exports = {
 
@@ -145,17 +146,25 @@ module.exports = {
 	},
 
 	watchItem: function(req, res) {
-		itemId = req.params.id;
+		Listing.findOneAndUpdate({ _id: req.params.id }, req.body, function(err, item) {
+			if (item.status !== 'purchased') {
+				var user = User.findOne({_id: item.buyer}).exec().then(function(user) {
+					user.listings.watching.push(item);
+					user.notifications.push({
+						body: "You are watching listing: '" + item.title + "'"
+					});
+					user.save(function(err) {
+						console.log("---> buyer notification sent");
+					});
+				});
+			}
+		});
 
-		var user = User.findOne({_id: item.buyer}).exec().then(function(user) {
-		user.listings.watching.push(item);
-		user.notifications.push({
-			body: "You are watching listing: '" + item.title + "'"
-		});
-		user.save(function(err) {
-			console.log("---> buyer notification sent");
-		});
-	});
+
+
+
+
+		
 	}
 
 };
