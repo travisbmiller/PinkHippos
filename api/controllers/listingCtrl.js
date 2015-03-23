@@ -142,7 +142,7 @@ module.exports = {
 				item.buyersInPro.push(req.body.user);
 
 				// notify seller
-				var user = User.findOne({_id: item.seller}).exec().then(function(user) {
+				var user = User.findOne({ _id: item.seller }).exec().then(function(user) {
 					user.notifications.push({
 						body: "Listing: '" + item.title + "' has been reserved."
 					});
@@ -152,7 +152,7 @@ module.exports = {
 				});
 
 				// notify buyer
-				var user = User.findOne({_id: item.buyer}).exec().then(function(user) {
+				var user = User.findOne({ _id: item.buyersInPro }).exec().then(function(user) {
 					user.notifications.push({
 						body: "You have reserved listing: '" + item.title + "'"
 					});
