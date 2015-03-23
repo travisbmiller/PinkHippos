@@ -103,12 +103,6 @@ app.get('/api/listings/:id', listingCtrl.getListings);
 
 app.get('/api/user/:id', userCtrl.getUser);
 
-app.get('/api/user/purchased', listingCtrl.getPurchased);
-
-app.get('/api/user/sold', listingCtrl.getSold);
-
-app.get('/api/user/watching', listingCtrl.getWatching);
-
 // PUT REQUESTS
 
 app.put('/api/listing/:id', listingCtrl.updateListing);
