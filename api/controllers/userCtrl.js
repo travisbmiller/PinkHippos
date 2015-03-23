@@ -108,7 +108,7 @@ module.exports = {
 
 				} else if (user) {
 
-					listingsCheck(user);
+					// listingsCheck(user);
 					// user.listings.watching[0].populate('seller');
 
 					res.status(200).json(user);
@@ -155,9 +155,11 @@ var listingsCheck = function(user) {
 
 		if(user.listings[catArr[i]]) {
 
-			console.log('Listing poplation round: ', i);
+			console.log('Listing poplation round: ', i + 1);
 
 			console.log('listings: ', user.listings[catArr[i]]);
+
+			user.listings[catArr[i]].populate('seller');
 
 		}
 	

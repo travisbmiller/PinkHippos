@@ -49,7 +49,7 @@ module.exports = {
 		var dfd2 = q.defer();
 
 		Listing
-            .findById(req.params.id)
+            .find({shortId: req.params.id})
             .populate('seller', 'firstName')
             .populate('img')
 
