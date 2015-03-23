@@ -671,6 +671,135 @@ textarea {
 
 
 /*----------------------------------------
+     Listing Option Modal Styles
+----------------------------------------*/
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    background: rgba(0,0,0,0.4);
+
+}
+
+#listing_options_modal {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    z-index: 300;
+}
+
+#listing_options_modal .modal_container {
+    background: #FFF;
+    height: 200px;
+}
+
+.modal_container header {
+    padding-left: 10px;
+    background: #ddd;
+    border: none;
+}
+
+.modal_container header > .circle {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    text-align: center;
+    color: #ccc;
+    border: 1px solid #ccc;
+}
+
+.modal_container header .fa.fa-times {
+    font-size: 1.4em;
+    position: relative;
+    right: 0px;
+    bottom: 9px;
+}
+.modal_container .listing_option_list {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    border-bottom: 1px solid #fafafa;
+}
+
+.listing_option_list > span {
+    right: 20px;
+    border: 1px solid #fafafa;
+}
+
+.listing_option_list span .fa.fa-eye {
+    font-size: 1em;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: #606060;
+
+}
+
+.listing_option_list span .fa.fa-trash-o {
+    font-size: 1.2em;
+    position: absolute;
+    top: 4px;
+    left: 5.5px;
+    color: #606060;
+}
+
+.listing_option_list span .fa.fa-pencil {
+    font-size: 1em;
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    color: #606060;
+}
+
+.delete_confirmation_header {
+    padding-top: 20px;
+    font-size: 1.2em;
+    font-weight: 400;
+    height: 150px;
+    padding-bottom: 10px;
+}
+
+
+
+.btn_delete_listing {
+    background-color: #E74C3C;
+    width: 80%;
+    height: 50px;
+    border: none;
+    border-radius: 1px;
+    color: #FFF;
+    font-weight: 100;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.btn_cancel {
+    background: none;
+    width: 80%;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    color: #CCC;
+    font-weight: 100;
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+.testing {
+    overflow: hidden;
+}
+
+
+
+
+
+
+/*----------------------------------------
     Public Listing View Styles
 ----------------------------------------*/
 
@@ -690,6 +819,16 @@ textarea {
     color: #333;
     font-size: 1.4em;
 }
+
+
+.preview_listing_nav_title {
+    position: absolute;
+    top: 15px;
+    left: 60px;
+    color: #333;
+    font-size: 1.4em;
+}
+
 
 .public_listing_container_scroll {
     width: 100%;
@@ -713,6 +852,15 @@ textarea {
     position: absolute;
     right: 30px;
     top: 18px;
+    transition: color 0.8s;
+}
+
+#public_listing_container > header .fa.fa-arrow-left {
+    color: #EEE;
+    font-size: 1.8em;
+    position: absolute;
+    left: 30px;
+    top: 16px;
     transition: color 0.8s;
 }
 

@@ -6,6 +6,7 @@ app.controller('UserCtrl', function ($scope, UserData) {
     $scope.sold = false;  
     $scope.showSlideNav = false;
     $scope.user = UserData.data
+
     console.log("it worked --- ", UserData)
 
 

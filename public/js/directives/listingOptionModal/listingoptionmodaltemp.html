@@ -1,0 +1,63 @@
+
+    <div class="row" id="listing_options_modal">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 animated slideInDown">
+            
+            <div class="modal_container">
+                
+                <header class="listing_header">
+                    <span class="circle add_icon" ng-click="closeModal()"><i class="fa fa-times"></i>
+                </span>
+                    {{ Listing.title }} 
+                </header>
+                
+                <div class="container">
+                    
+                    <!-- Listing Options -->
+
+                    <div class="row animated fadeIn" ng-show="!show_listing_confirm_delete">
+                        <div class="col-xs-12 listing_option_list" ng-click="viewlisting()">
+                            View Listing
+                            <span class="circle add_icon"><i class="fa fa-eye"></i></span>
+                
+                        </div>
+                        <div class="col-xs-12 listing_option_list" ng-click="editlisting()">
+                            Edit Listing
+                            <span class="circle add_icon"><i class="fa fa-pencil"></i></span>
+                        </div>
+                        <div class="col-xs-12 listing_option_list" ng-click="showDelete()">
+                            Delete Listing
+                            <span class="circle add_icon"><i class="fa fa-trash-o"></i></span>
+                        </div>
+                     </div> 
+
+                     <!-- Confirmation of Delete -->
+
+                     <div 
+                        class="row delete_confirmation_header" 
+                        ng-show="show_listing_confirm_delete">
+                        
+                        <div class="col-xs-12 text-center">
+                           <button 
+                                class="btn_cancel animated fadeIn" 
+                                ng-click="show_listing_options = true; show_listing_confirm_delete = false">
+                                Cancel
+                            </button>
+                        </div>
+                        
+                        <div class="col-xs-12 text-center">
+                           <button 
+                                class="btn_delete_listing animated fadeIn"
+                                ng-click="performDelete()">
+                                Delete Listing
+                            </button>
+                        </div>
+                        
+                     </div> 
+
+
+
+                
+            </div>
+        </div>
+    </div>

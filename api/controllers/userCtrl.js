@@ -92,23 +92,33 @@ module.exports = {
 
 		userId = req.params.id;
 
-		User.findById(userId, function(err, user) {
+		User.findById(userId)
 
-			if (err) {
+			.populate('listings.watching')
+			.populate('listings.purchased')
+			.populate('listings.sold')
+			.populate('listings.sellingInPro')
+			.populate('listings.buyingInPro')
 
-				res.status(500).json(err);
+			.exec(function(err, user) {
 
-			} else if (user) {
+				if (err) {
 
-				res.status(200).json(user);
+					res.status(500).json(err);
 
-			} else {
+				} else if (user) {
 
-				res.status(404).end();
+					user.listings.watching[0].populate('seller');
 
-			}
+					res.status(200).json(user);
 
-		});
+				} else {
+
+					res.status(404).end();
+
+				}
+
+			});
 
 	},
 

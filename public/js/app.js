@@ -1,4 +1,4 @@
-var app = angular.module("app", ['ui.router', 'ngTouch', "angularFileUpload"]);
+var app = angular.module("app", ['ui.router', "angularFileUpload"]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -21,6 +21,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     return UserService.getUser($stateParams.user)
                 } 
             }
+        })
+        .state('previewListing', {
+            url: '/preview/:listing',
+            templateUrl: "js/previewlistingview/previewListingTemp.html",
+            controller: 'PreviewListingCtrl'
+            // resolve: {
+            //     UserData: function ($stateParams, listingService) {
+            //         return UserService.getUser($stateParams.listing)
+            //     } 
+            // }
         })
         .state('user.listings', {
             templateUrl: "js/listingsView/listingTemp.html",
