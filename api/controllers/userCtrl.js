@@ -108,7 +108,7 @@ module.exports = {
 
 				} else if (user) {
 
-					user.listings.watching[0].populate('seller');
+					// user.listings.watching[0].populate('seller');
 
 					res.status(200).json(user);
 

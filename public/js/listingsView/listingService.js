@@ -17,6 +17,21 @@ app.service('ListingService', function ($http) {
 
     }
 
+    this.getListing = function (id) {
+        
+        console.log("getlisting for --", id)
+        
+        return $http({
+            method: 'GET',
+            url: '/api/listing/' + id
+        }, function (data) {
+            return data.data
+        }, function (err) {
+            return console.log(err)
+        } )
+
+    }
+
     this.deletelisting = function (id) {
         console.log(id)
         return $http({

@@ -8,9 +8,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'LoginCtrl'
         })
         .state('publicListing', {
-            url: '/listing',
+            url: '/listing/:listing',
             templateUrl: 'js/publicListingView/publicListingTemp.html', 
-            controller: 'PublicListingCtrl'
+            controller: 'PublicListingCtrl',
+            resolve: {
+                ListingData: function ($stateParams, ListingService) {
+                    return ListingService.getListing($stateParams.listing)
+                } 
+            }
         })
         .state('user', {
             url: "/:user",
@@ -25,12 +30,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('previewListing', {
             url: '/preview/:listing',
             templateUrl: "js/previewlistingview/previewListingTemp.html",
-            controller: 'PreviewListingCtrl'
-            // resolve: {
-            //     UserData: function ($stateParams, listingService) {
-            //         return UserService.getUser($stateParams.listing)
-            //     } 
-            // }
+            controller: 'PreviewListingCtrl',
+            resolve: {
+                ListingData: function ($stateParams, ListingService) {
+                    return ListingService.getListing($stateParams.listing)
+                } 
+            }
         })
         .state('user.listings', {
             templateUrl: "js/listingsView/listingTemp.html",
