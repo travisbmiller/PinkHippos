@@ -224,7 +224,7 @@ module.exports = {
 					console.log('---> item status changed');
 				});
 				console.log('This is the item: ', item);
-				//notify user
+				//notify seller
 				var user = User.findOne({_id: item.seller}).exec().then(function(user) {
 					user.listings.sold.push(item);
 					user.notifications.push({

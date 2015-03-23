@@ -145,7 +145,17 @@ module.exports = {
 	},
 
 	watchItem: function(req, res) {
-		
+		itemId = req.params.id;
+
+		var user = User.findOne({_id: item.buyer}).exec().then(function(user) {
+		user.listings.watching.push(item);
+		user.notifications.push({
+			body: "You are watching listing: '" + item.title + "'"
+		});
+		user.save(function(err) {
+			console.log("---> buyer notification sent");
+		});
+	});
 	}
 
 };
